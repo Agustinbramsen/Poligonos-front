@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de filtrado</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultados de filtrado</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Polígono</th>
+                <th>ID Distrito</th>
+                <th>Nombre Distrito</th>
+                <th>Provincia</th>
+                <th>ID Sección</th>
+                <th>Nombre Sección</th>
+                <th>Localidad</th>
+                <th>Score Promedio</th>
+                <th>Q Geo</th>
+                <th>Índice Geo</th>
+                <th>Q Estimada</th>
+                <th>Q Personas Priorizadas</th>
+                <th>Índice Hogares</th>
+                <th>Hogares Estimados</th>
+                <th>Observado</th>
+                <th>Shape Texto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dato in datos %}
+            <tr>
+                <td>{{ dato.id_poligono }}</td>
+                <td>{{ dato.id_distrito }}</td>
+                <td>{{ dato.nombre_distrito }}</td>
+                <td>{{ dato.provincia }}</td>
+                <td>{{ dato.id_seccion }}</td>
+                <td>{{ dato.nombre_seccion }}</td>
+                <td>{{ dato.localidad }}</td>
+                <td>{{ dato.score_promedio }}</td>
+                <td>{{ dato.q_geo }}</td>
+                <td>{{ dato.indice_geo }}</td>
+                <td>{{ dato.q_estimada }}</td>
+                <td>{{ dato.q_personaspriorizadas }}</td>
+                <td>{{ dato.indice_hogares }}</td>
+                <td>{{ dato.hogares_estimados }}</td>
+                <td>{{ dato.observado }}</td>
+                <td>{{ dato.shape_texto }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Proyecto Polígonos</title>
+
+  <!-- SEO Meta Tags-->
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <!-- Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon and Touch Icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+
+  <!-- Page loading styles -->
+  <style>
+
+    body {
+      background-color: #f8f8f8;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    hr {
+      background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d); 
+      padding: 5px 100px; 
+      border: none; 
+      margin: 0px; 
+      opacity: 1;
+    }
+
+    .sitio-web-en-creacion {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+      /* ajusta la altura según sea necesario */
+    }
+
+    .sitio-web-en-creacion img {
+      width: 100%;
+      max-width: 500px;
+      /* ajusta el tamaño máximo de la imagen según sea necesario */
+    }
+
+  </style>
+
+</head>
+
+
+<!-- Body -->
+
+<body>
+
+      <!-- Menu with dropdown + Button -->
+      <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
+        <div class="container">
+          <a href="{% url 'home' %}" class="navbar-brand">
+            <img src="{% static 'Logo-2023.png' %}" width="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1"
+            aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <nav id="navbarCollapse1" class="collapse navbar-collapse">
+            <hr class="d-lg-none mt-3 mb-2">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link active">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'form' %}" class="nav-link active">Polígonos</a>
+              </li>
+            </ul>
+            <a href="" style="background-color: #61b0a3; padding: 10px 20px;"
+              class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-1 align-content-center">
+              <i class="bx bx-user fs-lg me-1 text-center"></i>
+              Cerrar sesión
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <!-- La etiqueta hr es la línea que separa el menú del resto de la web -->
+        <hr>
+      
+        <h2 style="text-align: center; margin-top: 30px;">Esta sección se encuentra en construcción </h2>
+        <div class="sitio-web-en-creacion">
+          <img src="{% static 'error.jpg' %}" alt="Sitio web en creación">
+        </div>
+      </main>
+
+
+      <!-- Vendor Scripts -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

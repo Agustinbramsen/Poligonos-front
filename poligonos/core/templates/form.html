@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Proyecto Polígonos</title>
+
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon and Touch Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        hr {
+            background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d); 
+            padding: 5px 100px; 
+            border: none; 
+            margin: 0px; 
+            opacity: 1;
+        }
+
+        form {
+            margin: 50px auto;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        select {
+            margin-bottom: 20px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3b99fc;
+            box-shadow: 0 0 3px #3b99fc;
+        }
+
+        input {
+            display: inline-block;
+            border: none;
+            padding: 8px 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 3px;
+            box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #61b0a3;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 45px; 
+            margin-top: 20px; 
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4a98c7;
+        }
+
+        div.btn-container {
+            width: 100%;
+            display: flex;
+            justify-content: center
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #F8C301;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+       <!-- Menu with dropdown + Button -->
+       <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
+        <div class="container">
+            <a href="{% url 'home' %}" class="navbar-brand">
+                <img src="{% static 'Logo-2023.png' %}" width="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse1" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav id="navbarCollapse1" class="collapse navbar-collapse">
+                <hr class="d-lg-none mt-3 mb-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link active">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link active">Polígonos</a>
+                    </li>
+                </ul>
+                <a href="" style="background-color: #61b0a3; padding: 10px 20px;"
+                    class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-1 align-content-center">
+                    <i class="bx bx-user fs-lg me-1 text-center"></i>
+                    Cerrar sesión
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- La etiqueta hr es la línea que separa el menú del resto de la web -->
+        <hr>
+        
+        <form method="POST" id="myForm" action="{% url 'tabla' %}">
+            {% csrf_token %}
+        
+            <div>
+                <label for="provincia">Provincia</label>
+                <select id="provincia" name="provincia">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="BUENOS AIRES">Buenos Aires</option>
+                    <option value="CORDOBA">Córdoba</option>
+                    <option value="SANTA FE">Santa Fe</option>
+                </select>
+            </div>
+        
+            <div>
+                <label for="Cordon">Cordon</label>
+                <select id="Cordon" name="Cordon">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="Cordon1">Cordon 1</option>
+                    <option value="Cordon2">Cordon 2</option>
+                    <option value="Cordon3">Cordon 3</option>
+                    <option value="Cordon4">Cordon 4</option>
+                    <option value="Cordon5">Cordon 5</option>
+                    <option value="Cordon6">Cordon 6</option>
+                    <option value="Cordon7">Cordon 7</option>
+                </select>
+            </div>
+        
+            <div>
+                <label for="feedback">Feedback</label>
+                <select id="feedback" name="feedback">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="visitado">Visitado</option>
+                    <option value="novisitado">No visitado</option>
+                    <option value="zonarural">Zona Rural</option>
+                    <option value="zonapeligrosa">Zona Peligrosa</option>
+                </select>
+            </div>
+        
+            <div class="btn-container">
+                <input type="submit" value="Buscar">
+                <div id="loader" class="loader"></div>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>
