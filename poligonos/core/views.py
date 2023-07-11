@@ -22,9 +22,9 @@ def filtrar_datos(request):
         feedback = request.POST.get('feedback')
 
         # Imprime los valores de los campos para verificar
-        print("Provincia:", provincia)
-        print("Cordon:", Cordon)
-        print("Feedback:", feedback)
+        # print("Provincia:", provincia)
+        # print("Cordon:", Cordon)
+        # print("Feedback:", feedback)
 
         # Realiza la consulta a la base de datos con los parámetros de filtro
         datos_filtrados = DatosPoligonosTexto.objects.all()

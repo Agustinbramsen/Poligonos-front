@@ -8,5 +8,4 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('form/', form, name="form"),
     path('tabla/', filtrar_datos, name='tabla'),
-
 ]

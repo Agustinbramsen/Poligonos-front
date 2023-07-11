@@ -25,10 +25,17 @@
         td {
             text-transform: uppercase;
         }
+        #map {
+            height: 600px;
+        }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/ol/dist/ol.js"></script>
 </head>
 <body>
     <h1>Resultados de filtrado</h1>
+    <div id="map"></div>
+ 
     <table>
         <thead>
             <tr>
@@ -63,10 +70,11 @@
                 
                 <td>{{ dato.hogares_estimados }}</td>
                 <td>{{ dato.observado }}</td>
-                <td>{{ dato.shape_texto }}</td>
+                <td class="shape">{{ dato.shape_texto }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
