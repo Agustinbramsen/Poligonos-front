@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from core.models import DatosPoligonosTexto
+from core.models import 
 import logging
 import json
+import sys
 
 
 # Create your views here.
@@ -18,7 +19,7 @@ def home (request):
 def filtrar_datos(request):
     if request.method == 'POST':
         provincia = request.POST.get('provincia')
-        Cordon = request.POST.get('Cordon')
+        seccion = request.POST.get('seccion')
         feedback = request.POST.get('feedback')
 
         # Imprime los valores de los campos para verificar
@@ -27,16 +28,16 @@ def filtrar_datos(request):
         # print("Feedback:", feedback)
 
         # Realiza la consulta a la base de datos con los parámetros de filtro
-        datos_filtrados = DatosPoligonosTexto.objects.all()
+        datos_filtrados = DatosPoligonosFinales.objects.all()
         if provincia:
-            datos_filtrados = datos_filtrados.filter(provincia=provincia)
-        if Cordon:
-            datos_filtrados = datos_filtrados.filter(nombre_distrito=Cordon)
+            datos_filtrados = datos_filtrados.filter(distrito_nombre=provincia)
+        if seccion:
+            datos_filtrados = datos_filtrados.filter(seccion_nombre=seccion)
 
         # Imprime los datos filtrados para verificar
         for dato in datos_filtrados:
-            print("ID Polígono:", dato.id_poligono)
-            print("ID Distrito:", dato.id_distrito)
+            print("ID Polígono:", dato.ID_poligono)
+            print("ID Distrito:", dato.distrito)
             # Imprime los demás campos que deseas mostrar en la tabla
 
         # Devuelve los resultados en una tabla
