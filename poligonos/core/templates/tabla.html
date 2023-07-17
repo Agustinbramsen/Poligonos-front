@@ -4,9 +4,19 @@
 <head>
     <title>Resultados de filtrado</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-top: 20px;
         }
 
         th, td {
@@ -17,28 +27,44 @@
 
         th {
             background-color: #f2f2f2;
+            font-weight: bold;
         }
 
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-        td {
+
+        .text-uppercase {
             text-transform: uppercase;
         }
+
+        .shape {
+            font-style: italic;
+        }
+
+        .hidden-column {
+            display: none;
+        }
+
         #map {
             height: 600px;
+            margin-top: 20px;
         }
     </style>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ol/dist/ol.js"></script>
 </head>
 <body>
     <h1>Resultados de filtrado</h1>
     <div id="map"></div>
  
-    <table>
+    <table id="myTable">
         <thead>
             <tr>
+                <th></th>
                 <th>Provincia</th>                
                 <th>Nombre Sección</th>
                 <th>Localidad</th>
@@ -49,17 +75,14 @@
                 <th>Q Personas Priorizadas</th>                
                 <th>Hogares Estimados</th>
                 <th>Observado</th>
-                <th>Shape Texto</th>
+                <th class="hidden-column">Shape Texto</th>
             </tr>
         </thead>
         <tbody>
             {% for dato in datos %}
             <tr>
-                
-                
-                
+                <td><input type="checkbox" class="row-checkbox"></td>
                 <td>{{ dato.provincia }}</td>
-                
                 <td class="text-uppercase">{{ dato.nombre_seccion }}</td>
                 <td>{{ dato.localidad }}</td>
                 <td>{{ dato.score_promedio }}</td>
@@ -67,14 +90,39 @@
                 <td>{{ dato.indice_geo }}</td>
                 <td>{{ dato.q_estimada }}</td>
                 <td>{{ dato.q_personaspriorizadas }}</td>
-                
                 <td>{{ dato.hogares_estimados }}</td>
                 <td>{{ dato.observado }}</td>
-                <td class="shape">{{ dato.shape_texto }}</td>
+                <td class="shape hidden-column">{{ dato.shape_texto }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#myTable').DataTable();
+
+            // Agregar evento de clic al checkbox de la cabecera de la tabla
+            $('#myTable thead th input[type="checkbox"]').on('click', function() {
+                if (this.checked) {
+                    table.rows().select();
+                } else {
+                    table.rows().deselect();
+                }
+            });
+
+            // Agregar evento de clic a los checkboxes de las filas
+            $('#myTable tbody').on('click', 'input.row-checkbox', function() {
+                var tr = $(this).closest('tr');
+                if (this.checked) {
+                    table.row(tr).select();
+                } else {
+                    table.row(tr).deselect();
+                }
+            });
+        });
+    </script>
+
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

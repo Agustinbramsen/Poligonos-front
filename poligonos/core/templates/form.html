@@ -30,10 +30,10 @@
         }
 
         hr {
-            background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d); 
-            padding: 5px 100px; 
-            border: none; 
-            margin: 0px; 
+            background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d);
+            padding: 5px 100px;
+            border: none;
+            margin: 0px;
             opacity: 1;
         }
 
@@ -87,8 +87,8 @@
             background-color: #61b0a3;
             color: #fff;
             cursor: pointer;
-            padding: 10px 45px; 
-            margin-top: 20px; 
+            padding: 10px 45px;
+            margin-top: 20px;
             border-radius: 4px;
         }
 
@@ -111,19 +111,337 @@
             animation: spin 1s linear infinite;
             display: none;
         }
-
     </style>
+
+    <script>
+        function filtrarPorProvincia() {
+            var provinciaSeleccionada = document.getElementById("provincia").value;
+            var seccionDropdown = document.getElementById("seccion");
+            var seccionesCiudadAutonoma = ["Comuna 01", "Comuna 02", "Comuna 03", "Comuna 04", "Comuna 05", "Comuna 06", "Comuna 07", "Comuna 08", "Comuna 09", "Comuna 10", "Comuna 11", "Comuna 12", "Comuna 13", "Comuna 14", "Comuna 15"];
+
+            // elimina las otras opciones
+            seccionDropdown.innerHTML = "";
+
+            // agrega las opciones correspondientes a ciudad e buenos aries 
+            if (provinciaSeleccionada === "CIUDAD AUTÓNOMA DE BUENOS AIRES") {
+                for (var i = 0; i < seccionesCiudadAutonoma.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesCiudadAutonoma[i];
+                    option.text = seccionesCiudadAutonoma[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Buenos Aires
+            if (provinciaSeleccionada === "BUENOS AIRES") {
+                var seccionesBuenosAires = [
+                    "General Pueyrredon", "La Plata", "La Matanza", "Esteban Echeverria", "Moreno", "Almirante Brown", "Escobar", "Malvinas Argentinas", "Quilmes", "Pergamino", "Lomas De Zamora", "Ituzaingo", "Moron", "Azul", "General San Martin", "Pilar", "Chacabuco", "Lanus",
+                    "Bahia Blanca", "General Alvarado", "Necochea", "Junin", "Merlo", "Bragado", "Avellaneda", "Vicente Lopez", "Tandil", "San Nicolas", "San Vicente", "Cañuelas", "Pehuajo", "San Miguel", "General Rodriguez", "Zarate", "Florencio Varela", "Campana", "Lujan",
+                    "Hurlingham", "Berisso", "Ezeiza", "Lincoln", "Carmen De Areco", "Lobos", "Las Heras", "Tres De Febrero", "Capitan Sarmiento", "Tigre", "Trenque Lauquen", "Baradero", "Brandsen", "Carlos Tejedor", "San Isidro", "Carlos Casares", "Chascomus", "Chivilcoy",
+                    "General Arenales", "General Pinto", "General Madariaga", "Gonzales Chaves", "Leandro N. Alem", "Magdalena", "La Costa", "Marcos Paz", "General Villegas", "Olavarria", "Berazategui", "Ensenada", "San Fernando", "Presidente Peron", "Navarro", "Monte",
+                    "Rivadavia", "Rauch", "Roque Perez", "Saladillo", "Mercedes", "San Antonio De Areco", "Hipolito Yrigoyen", "Veinticinco De Mayo", "Florentino Ameghino", "Jose C. Paz", "Mar Chiquita", "Ayacucho", "Balcarce", "Pinamar", "Tres Arroyos", "Dolores",
+                    "Monte Hermoso", "Coronel Rosales", "San Pedro", "Villa Gesell", "Ramallo", "Nueve De Julio", "Alberti", "General Viamonte", "Bolivar", "Exaltacion De La Cruz", "Adolfo Alsina", "Patagones", "Castelli", "Coronel Dorrego", "Colon", "Coronel Pringles",
+                    "Coronel Suarez", "Daireaux", "Puan", "General Alvear", "General Guido", "General Lamadrid", "General Lavalle", "General Belgrano", "Tordillo", "Guamini", "Villarino", "Laprida", "Las Flores", "Punta Indio", "Rojas", "Pellegrini", "Saavedra", "General Paz",
+                    "Salliquelo", "San Andres De Giles", "San Cayetano", "Tapalque", "Tornquist", "Tres Lomas", "Arrecifes", "Juarez", "Loberia", "Maipu", "Salto"
+                ];
+
+                for (var i = 0; i < seccionesBuenosAires.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesBuenosAires[i];
+                    option.text = seccionesBuenosAires[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Jujuy
+            if (provinciaSeleccionada === "JUJUY") {
+                var seccionesJujuy = [
+                    "El Carmen", "San Pedro", "Dr. Manuel Belgrano", "Palpala", "Ledesma", "Tilcara", "Tumbaya"
+                ];
+
+                for (var i = 0; i < seccionesJujuy.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesJujuy[i];
+                    option.text = seccionesJujuy[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+
+            // Agregar opciones para la provincia de Entre Ríos
+            if (provinciaSeleccionada === "ENTRE RIOS") {
+                var seccionesEntreRios = ["Gualeguaychu", "Federacion", "Gualeguay", "Concordia", "Villaguay", "Victoria", "Uruguay", "Parana", "Colon", "Federal", "Nogoya", "Tala", "Diamante", "San Salvador", "La Paz", "Feliciano", "Islas Del Ibicuy"
+                ];
+
+                for (var i = 0; i < seccionesEntreRios.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesEntreRios[i];
+                    option.text = seccionesEntreRios[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Santiago del Estero
+            if (provinciaSeleccionada === "SANTIAGO DEL ESTERO") {
+                var seccionesSantiago = [
+                    "Banda", "Capital", "Robles", "Rio Hondo", "Jimenez", "Loreto", "Choya", "Ojo De Agua", "Quebrachos", "Aguirre", "Belgrano", "Moreno", "Copo", "Pellegrini"
+                ];
+
+                for (var i = 0; i < seccionesSantiago.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesSantiago[i];
+                    option.text = seccionesSantiago[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }// Agregar opciones para la provincia de Santa Fe
+            if (provinciaSeleccionada === "SANTA FE") {
+                var seccionesSantaFe = ["General Lopez", "Castellanos", "Rosario", "General Obligado", "La Capital", "Las Colonias", "San Jeronimo", "San Justo", "San Cristobal", "Nueve De Julio", "Vera", "San Javier", "San Martin", "Garay", "San Lorenzo", "Constitucion", "Caseros", "Iriondo", "Belgrano"
+                ];
+
+                for (var i = 0; i < seccionesSantaFe.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesSantaFe[i];
+                    option.text = seccionesSantaFe[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Chaco
+            if (provinciaSeleccionada === "CHACO") {
+                var seccionesChaco = ["Comandante Fernandez", "Mayor Luis J. Fontana", "San Fernando", "Libertador Gral. San Martin", "General Güemes"
+                ];
+
+                for (var i = 0; i < seccionesChaco.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesChaco[i];
+                    option.text = seccionesChaco[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Corrientes
+            if (provinciaSeleccionada === "CORRIENTES") {
+                var seccionesCorrientes = ["Curuzu Cuatia", "Paso De Los Libres", "Mercedes", "Goya", "Capital"
+                ];
+
+                for (var i = 0; i < seccionesCorrientes.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesCorrientes[i];
+                    option.text = seccionesCorrientes[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Río Negro
+            if (provinciaSeleccionada === "RIO NEGRO") {
+                var seccionesRioNegro = ["Bariloche", "General Roca", "Adolfo Alsina"
+                ];
+
+                for (var i = 0; i < seccionesRioNegro.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesRioNegro[i];
+                    option.text = seccionesRioNegro[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Chubut
+            if (provinciaSeleccionada === "CHUBUT") {
+                var seccionesChubut = ["Biedma", "Futaleufu", "Escalante", "Rawson", "Gaiman"
+                ];
+
+                for (var i = 0; i < seccionesChubut.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesChubut[i];
+                    option.text = seccionesChubut[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Misiones
+            if (provinciaSeleccionada === "MISIONES") {
+                var seccionesMisiones = ["Eldorado", "Obera", "Iguazu", "Capital"
+                ];
+
+                for (var i = 0; i < seccionesMisiones.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesMisiones[i];
+                    option.text = seccionesMisiones[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Córdoba
+            if (provinciaSeleccionada === "CORDOBA") {
+                var seccionesCordoba = ["San Justo", "Marcos Juarez", "Gral San Martin", "Rio Cuarto", "Capital", "Punilla", "Tercero Arriba", "Colon", "Calamuchita", "Santa Maria", "Ischilin", "San Alberto", "Juarez Celman", "Cruz Del Eje", "General Roca", "Roque Saenz Peña", "Rio Primero", "Rio Segundo", "Union",
+                    "San Javier", "Tulumba", "Rio Seco"
+                ];
+
+                for (var i = 0; i < seccionesCordoba.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesCordoba[i];
+                    option.text = seccionesCordoba[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Neuquén
+            if (provinciaSeleccionada === "NEUQUEN") {
+                var seccionesNeuquen = ["Zapala", "Lacar", "Confluencia", "Los Lagos", "Pehuenches", "Alumine", "Minas", "Chos Malal", "Picunches", "Añelo", "Huiliches", "Norquin"
+                ];
+
+                for (var i = 0; i < seccionesNeuquen.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesNeuquen[i];
+                    option.text = seccionesNeuquen[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Salta
+            if (provinciaSeleccionada === "SALTA") {
+                var seccionesSalta = ["San Martin", "Oran", "Capital", "Cerrillos", "La Caldera"
+                ];
+
+                for (var i = 0; i < seccionesSalta.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesSalta[i];
+                    option.text = seccionesSalta[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Tierra del Fuego
+            if (provinciaSeleccionada === "TIERRA DEL FUEGO") {
+                var seccionesTierraDelFuego = ["Ushuaia", "Rio Grande", "Tolhuin"
+                ];
+
+                for (var i = 0; i < seccionesTierraDelFuego.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesTierraDelFuego[i];
+                    option.text = seccionesTierraDelFuego[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Tucumán
+            if (provinciaSeleccionada === "TUCUMAN") {
+                var seccionesTucuman = ["Tafi Viejo", "Capital", "Cruz Alta", "Lules", "Yerba Buena", "Chicligasta", "Monteros", "Simoca", "Tafi Del Valle"
+                ];
+
+                for (var i = 0; i < seccionesTucuman.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesTucuman[i];
+                    option.text = seccionesTucuman[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Mendoza
+            if (provinciaSeleccionada === "MENDOZA") {
+                var seccionesMendoza = ["San Rafael", "Junin", "Capital", "Godoy Cruz", "Lujan", "Guaymallen", "Maipu", "Las Heras"
+                ];
+
+                for (var i = 0; i < seccionesMendoza.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesMendoza[i];
+                    option.text = seccionesMendoza[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Santa Cruz
+            if (provinciaSeleccionada === "SANTA CRUZ") {
+                var seccionesSantaCruz = ["Lago Argentino", "Deseado", "Guer Aike"
+                ];
+
+                for (var i = 0; i < seccionesSantaCruz.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesSantaCruz[i];
+                    option.text = seccionesSantaCruz[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de La Pampa
+            if (provinciaSeleccionada === "LA PAMPA") {
+                var seccionesLaPampa = ["Capital", "Maraco", "Utracan"
+                ];
+
+                for (var i = 0; i < seccionesLaPampa.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesLaPampa[i];
+                    option.text = seccionesLaPampa[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de Formosa
+            if (provinciaSeleccionada === "FORMOSA") {
+                var seccionesFormosa = ["Pirané", "Pilcomayo", "Formosa", "Patiño", "Laishi", "Bermejo", "Matacos"
+                ];
+
+                for (var i = 0; i < seccionesFormosa.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesFormosa[i];
+                    option.text = seccionesFormosa[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+
+            // Agregar opciones para la provincia de San Luis
+            if (provinciaSeleccionada === "SAN LUIS") {
+                var seccionesSanLuis = ["Pedernera", "Juan Martín de Pueyrredón", "Junín"
+                ];
+
+                for (var i = 0; i < seccionesSanLuis.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesSanLuis[i];
+                    option.text = seccionesSanLuis[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de Catamarca
+            if (provinciaSeleccionada === "CATAMARCA") {
+                var seccionesCatamarca = ["Capital", "Pomán", "Valle Viejo", "Santa Rosa", "La Paz", "Andalgalá", "Belén", "Tinogasta", "Paclín", "Capayán", "Santa María", "Fray Mamerto Esquiú"
+                ];
+
+                for (var i = 0; i < seccionesCatamarca.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesCatamarca[i];
+                    option.text = seccionesCatamarca[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            // Agregar opciones para la provincia de San Juan
+            if (provinciaSeleccionada === "SAN JUAN") {
+                var seccionesSanJuan = ["Rivadavia", "Capital"
+                ];
+
+                for (var i = 0; i < seccionesSanJuan.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesSanJuan[i];
+                    option.text = seccionesSanJuan[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+            if (provinciaSeleccionada === "LA RIOJA") {
+                var seccionesLaRioja = ["Capital", "Chilecito"
+                ];
+
+                for (var i = 0; i < seccionesLaRioja.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = seccionesLaRioja[i];
+                    option.text = seccionesLaRioja[i];
+                    seccionDropdown.appendChild(option);
+                }
+            }
+        }
+    </script>
+
 </head>
 
 <body>
-       <!-- Menu with dropdown + Button -->
-       <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
+    <!-- Menu with dropdown + Button -->
+    <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
         <div class="container">
             <a href="{% url 'home' %}" class="navbar-brand">
                 <img src="{% static 'Logo-2023.png' %}" width="50">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse1" aria-expanded="false">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1"
+                aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <nav id="navbarCollapse1" class="collapse navbar-collapse">
@@ -148,34 +466,48 @@
     <main>
         <!-- La etiqueta hr es la línea que separa el menú del resto de la web -->
         <hr>
-        
+
         <form method="POST" id="myForm" action="{% url 'tabla' %}">
             {% csrf_token %}
-        
+
             <div>
                 <label for="provincia">Provincia</label>
-                <select id="provincia" name="provincia">
+                <select id="provincia" name="provincia" onchange="filtrarPorProvincia()">
                     <option value="" selected>Seleccionar</option>
                     <option value="BUENOS AIRES">Buenos Aires</option>
-                    <option value="CORDOBA">Córdoba</option>
+                    <option value="JUJUY">Jujuy</option>
+                    <option value="ENTRE RIOS">Entre Ríos</option>
+                    <option value="SANTIAGO DEL ESTERO">Santiago del Estero</option>
                     <option value="SANTA FE">Santa Fe</option>
+                    <option value="CHACO">Chaco</option>
+                    <option value="CORRIENTES">Corrientes</option>
+                    <option value="RIO NEGRO">Río Negro</option>
+                    <option value="CHUBUT">Chubut</option>
+                    <option value="MISIONES">Misiones</option>
+                    <option value="CORDOBA">Córdoba</option>
+                    <option value="NEUQUEN">Neuquén</option>
+                    <option value="SALTA">Salta</option>
+                    <option value="TIERRA DEL FUEGO">Tierra del Fuego</option>
+                    <option value="TUCUMAN">Tucumán</option>
+                    <option value="MENDOZA">Mendoza</option>
+                    <option value="SANTA CRUZ">Santa Cruz</option>
+                    <option value="LA PAMPA">La Pampa</option>
+                    <option value="FORMOSA">Formosa</option>
+                    <option value="SAN LUIS">San Luis</option>
+                    <option value="CATAMARCA">Catamarca</option>
+                    <option value="SAN JUAN">San Juan</option>
+                    <option value="LA RIOJA">La Rioja</option>
+                    <option value="CIUDAD AUTÓNOMA DE BUENOS AIRES">Ciudad Autónoma de Buenos Aires</option>
                 </select>
             </div>
-        
+
             <div>
-                <label for="Cordon">Cordon</label>
-                <select id="Cordon" name="Cordon">
+                <label for="seccion">Seccion</label>
+                <select id="seccion" name="seccion">
                     <option value="" selected>Seleccionar</option>
-                    <option value="Cordon1">Cordon 1</option>
-                    <option value="Cordon2">Cordon 2</option>
-                    <option value="Cordon3">Cordon 3</option>
-                    <option value="Cordon4">Cordon 4</option>
-                    <option value="Cordon5">Cordon 5</option>
-                    <option value="Cordon6">Cordon 6</option>
-                    <option value="Cordon7">Cordon 7</option>
                 </select>
             </div>
-        
+
             <div>
                 <label for="feedback">Feedback</label>
                 <select id="feedback" name="feedback">
@@ -186,7 +518,7 @@
                     <option value="zonapeligrosa">Zona Peligrosa</option>
                 </select>
             </div>
-        
+
             <div class="btn-container">
                 <input type="submit" value="Buscar">
                 <div id="loader" class="loader"></div>
