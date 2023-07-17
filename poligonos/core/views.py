@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from core.models import 
+from .models import DatosPoligonos
 import logging
 import json
 import sys
@@ -8,13 +8,15 @@ import sys
 
 # Create your views here.
 
-def form (request):
+def form(request):
     template_name = 'form.html'
     return render(request, template_name)
 
-def home (request):
+
+def home(request):
     template_name = 'home.html'
     return render(request, template_name)
+
 
 def filtrar_datos(request):
     if request.method == 'POST':
@@ -28,20 +30,22 @@ def filtrar_datos(request):
         # print("Feedback:", feedback)
 
         # Realiza la consulta a la base de datos con los parámetros de filtro
-        datos_filtrados = DatosPoligonosFinales.objects.all()
+        datos_filtrados = DatosPoligonos.objects.all()
         if provincia:
             datos_filtrados = datos_filtrados.filter(distrito_nombre=provincia)
         if seccion:
             datos_filtrados = datos_filtrados.filter(seccion_nombre=seccion)
-
-        # Imprime los datos filtrados para verificar
+        # print(type(datos_filtrados.))
+        contador = 0
+        datos_parseados = []
         for dato in datos_filtrados:
-            print("ID Polígono:", dato.ID_poligono)
-            print("ID Distrito:", dato.distrito)
-            # Imprime los demás campos que deseas mostrar en la tabla
+            datos_parseados.append(dato.model_to_dict())
+            if contador == 0:
+                contador = 1
+                for i, j in dato.model_to_dict().items():
+                    print(i, " ", j)
 
-        # Devuelve los resultados en una tabla
-        return render(request, 'tabla.html', {'datos': datos_filtrados})
+        return render(request, 'tabla.html', {'datos': datos_parseados})
 
     # Si no se envió un formulario, muestra el formulario vacío
     return render(request, 'form.html')

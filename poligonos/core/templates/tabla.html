@@ -66,9 +66,9 @@
             <tr>
                 <th></th>
                 <th>Provincia</th>                
-                <th>Nombre Sección</th>
+                
                 <th>Localidad</th>
-                <th>Score Promedio</th>
+                <th>Score Promedio %</th>
                 <th>Q Geo</th>
                 <th>Índice Geo</th>
                 <th>Q Estimada</th>
@@ -82,15 +82,15 @@
             {% for dato in datos %}
             <tr>
                 <td><input type="checkbox" class="row-checkbox"></td>
-                <td>{{ dato.provincia }}</td>
-                <td class="text-uppercase">{{ dato.nombre_seccion }}</td>
-                <td>{{ dato.localidad }}</td>
-                <td>{{ dato.score_promedio }}</td>
-                <td>{{ dato.q_geo }}</td>
+                <td class="text-uppercase mx-auto">{{ dato.distrito_nombre }}</td>
+                <td class="text-uppercase">{{ dato.seccion_nombre }}</td>
+                
+                <td>{{ dato.score_promedio }}%</td>
+                <td>{{ dato.cant_personas }}</td>
                 <td>{{ dato.indice_geo }}</td>
-                <td>{{ dato.q_estimada }}</td>
-                <td>{{ dato.q_personaspriorizadas }}</td>
-                <td>{{ dato.hogares_estimados }}</td>
+                <td>{{ dato.cant_personas }}</td>
+                <td>{{ dato.cant_personas_prio }}</td>
+                <td>{{ dato.cant_hogares }}</td>
                 <td>{{ dato.observado }}</td>
                 <td class="shape hidden-column">{{ dato.shape_texto }}</td>
             </tr>
