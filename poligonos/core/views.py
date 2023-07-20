@@ -29,11 +29,13 @@ def filtrar_datos(request):
         # print("Cordon:", Cordon)
         # print("Feedback:", feedback)
 
-        # Realiza la consulta a la base de datos con los parámetros de filtro
+       # Realiza la consulta a la base de datos con los parámetros de filtro
         datos_filtrados = DatosPoligonos.objects.all()
-        if provincia:
+
+        # Filtrar por provincia solo si se selecciona "Todas las secciones"
+        if seccion == "TODAS" and provincia:
             datos_filtrados = datos_filtrados.filter(distrito_nombre=provincia)
-        if seccion:
+        elif seccion:
             datos_filtrados = datos_filtrados.filter(seccion_nombre=seccion)
         # print(type(datos_filtrados.))
         contador = 0
