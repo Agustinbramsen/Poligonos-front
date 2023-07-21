@@ -6,7 +6,35 @@
     <title>Resultados de filtrado</title>
     <style>
         body {
+            background-color: #f8f8f8;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hr-3 {
+            background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d);
+            padding: 5px 100px;
+            border: none;
+            margin: 0px;
+            opacity: 1;
+        }
+
+        select {
+        margin-bottom: 20px;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #000;
+        width: 200px; /* Ajusta este valor para que todos los selects tengan el mismo ancho */
+        }   
+
+        select:focus {
+            outline: none;
+            border-color: #3b99fc;
+            box-shadow: 0 0 3px #3b99fc;
         }
 
         h1 {
@@ -53,7 +81,7 @@
 
         #map {
             height: 600px;
-            margin-top: 20px;
+            margin-top: 0px;
         }
 
         #resumen {
@@ -65,26 +93,13 @@
             margin-right: 10px;
         }
 
-        input {
-            display: inline-block;
-            border: none;
-            padding: 8px 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            border-radius: 3px;
-            box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        input:focus {
-            outline: none;
-        }
-
         /* Estilos para los botones "Descargar KML" y "Descargar GEOJSON" */
         .btn-container {
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            padding-top: 10px;
         }
 
         .btn-container a, .button-polygon {
@@ -121,20 +136,55 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="btn-container">
-            <h1 style="padding-left: 333px;">Resultados de filtrado</h1>
-            <a id="btnKML" class="btn-json">Descargar KML</a>
-            <a href="#" class="btn-json" id="btnJson">Descargar GEOJSON</a>
-            <div id="loader" class="loader"></div>
+     <!-- Menu with dropdown + Button -->
+     <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
+        <div class="container">
+            <a href="{% url 'home' %}" class="navbar-brand">
+                <img src="{% static 'Logo-2023.png' %}" width="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1"
+                aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav id="navbarCollapse1" class="collapse navbar-collapse">
+                <hr class="d-lg-none mt-3 mb-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link active">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link active">Polígonos</a>
+                    </li>
+                </ul>
+                <a href="" style="background-color: #61b0a3; padding: 10px 20px;"
+                    class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-1 align-content-center">
+                    <i class="bx bx-user fs-lg me-1 text-center"></i>
+                    Cerrar sesión
+                </a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <!-- La etiqueta hr es la línea que separa el menú del resto de la web -->
+        <hr class="hr-3">
+        <div class="container">
+            <div class="btn-container">
+                <h1>Resultados de los filtros</h1>
+            </div>
+        </div>
 
     <div id="map"></div>
     <div class="container d-flex justify-content-center gap-5 btn-container">
-        <button class="m-3 rounded button-polygon" id="buttonList">Poligonos seleccionados</button>
-        <button class="m-3 rounded button-polygon" id="buttonAll">Todos los poligonos</button>
+        <button class="m-3 rounded button-polygon" id="buttonList">Ver poligonos seleccionados</button>
+        <button class="m-3 rounded button-polygon" id="buttonAll">Seleccionar todos los poligonos</button>
+        <button class="m-3 rounded button-polygon" >Descargar KML</button>
+        <button class="m-3 rounded button-polygon" >Descargar GEOJSON</button>
+        
+        
     </div>
+    <h4 style="margin-bottom:3px;margin-top: -40px;">Datos seleccionados:</h4>
+    <div id="resumen" style="display: inline-block;"></div>
     <table id="myTable">
         <thead>
             <tr>
@@ -172,8 +222,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <h4 style="margin-bottom:3px;margin-top: 1px;">Datos seleccionados:</h4>
-    <div id="resumen" style="display: inline-block;"></div>
+
 
 
 
