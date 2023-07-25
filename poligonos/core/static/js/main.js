@@ -58,7 +58,18 @@ buttonAllPolygons.addEventListener('click', () => {
         source.addFeature(feature);
         source.addFeature(label);
     })
+    let geojsonFormat = new ol.format.GeoJSON();
 
+    const dataForJSON = source.getFeatures().map(feature => {
+        if (feature.get('name') === null) {
+            feature.unset('name');
+        }
+        return feature
+    });
+    geojson = geojsonFormat.writeFeatures(dataForJSON, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857'
+    });
 })
 
 
@@ -169,7 +180,7 @@ const btnKML = document.getElementById('btnKML');
 const btnJson = document.getElementById('btnJson');
 
 btnJson.addEventListener('click', () => {
-
+    console.log(geojson);
     if (!geojson) return (
         Swal.fire({
             title: 'GeoJSON Vacío',
