@@ -224,8 +224,7 @@ btnKML.addEventListener('click', () => {
 
     let url = URL.createObjectURL(kmlBlob);
 
-    btnKML.href = url;
-    btnKML.download = 'data.kml';
-
+        btnKML.href = url;
+        btnKML.download = 'data.kml';
 
 });
