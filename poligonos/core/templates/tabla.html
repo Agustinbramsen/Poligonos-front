@@ -21,15 +21,16 @@
         }
 
         select {
-        margin-bottom: 20px;
-        padding: 8px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #fff;
-        color: #000;
-        width: 200px; /* Ajusta este valor para que todos los selects tengan el mismo ancho */
-        }   
+            margin-bottom: 20px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #000;
+            width: 200px;
+            /* Ajusta este valor para que todos los selects tengan el mismo ancho */
+        }
 
         select:focus {
             outline: none;
@@ -102,7 +103,8 @@
             padding-top: 10px;
         }
 
-        .btn-container a, .button-polygon {
+        .btn-container a,
+        .button-polygon {
             background-color: #61b0a3;
             color: #fff;
             cursor: pointer;
@@ -112,6 +114,7 @@
             border: none;
             box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
             text-decoration: none;
+            text-align: center;
         }
 
         .btn-json {
@@ -122,7 +125,6 @@
         .btn-json:hover {
             background-color: #4a98c7;
         }
-        
     </style>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
@@ -138,8 +140,8 @@
 </head>
 
 <body>
-     <!-- Menu with dropdown + Button -->
-     <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
+    <!-- Menu with dropdown + Button -->
+    <header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
         <div class="container">
             <a href="{% url 'home' %}" class="navbar-brand">
                 <img src="{% static 'Logo-2023.png' %}" width="50">
@@ -176,130 +178,145 @@
             </div>
         </div>
 
-    <div id="map"></div>
-    <div class="container d-flex justify-content-center gap-5 btn-container">
-        <button class="m-3 rounded button-polygon" id="buttonList">Ver poligonos seleccionados</button>
-        <button class="m-3 rounded button-polygon" id="buttonAll">Seleccionar todos los poligonos</button>
-        <a class="m-3 rounded button-polygon" id="btnKML" >Descargar KML</a>
-        <a class="m-3 rounded button-polygon" id="btnJson" >Descargar GEOJSON</a>
-        
-        
-    </div>
-    <h4 style="margin-bottom:3px;margin-top: -40px;">Datos seleccionados:</h4>
-    <div id="resumen" style="display: inline-block;"></div>
-    <table id="myTable">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Provincia</th>
-                <th>ID Poligono</th>
-                <th>Localidad</th>
-                <th>Score Promedio %</th>
-                <th>Q Geo</th>
-                <th>Índice Geo</th>
-                <th>Q Estimada</th>
-                <th>Q Personas Priorizadas</th>
-                <th>Hogares Estimados</th>
-                <th>Observado</th>
-                <th class="hidden-column">Shape Texto</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dato in datos %}
-            <tr>
-                <td><input type="checkbox" class="row-checkbox"></td>
-                <td class="text-uppercase mx-auto">{{ dato.distrito_nombre }}</td>
-                <td class="id_poligono">{{dato.ID_poligono}}</td>
-                <td class="text-uppercase">{{ dato.seccion_nombre }}</td>
-
-                <td>{{ dato.score_promedio }}%</td>
-                <td>{{ dato.cant_personas }}</td>
-                <td>{{ dato.indice_geo }}</td>
-                <td>{{ dato.cant_personas }}</td>
-                <td>{{ dato.cant_personas_prio }}</td>
-                <td>{{ dato.cant_hogares }}</td>
-                <td>{{ dato.observado }}</td>
-                <td class="shape hidden-column">{{ dato.shape_texto }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <div id="map"></div>
+        <div class="container d-flex justify-content-center gap-5 btn-container">
+            <button class="m-3 rounded button-polygon" id="buttonList">Ver poligonos seleccionados</button>
+            <button class="m-3 rounded button-polygon" id="buttonAll">Seleccionar todos los poligonos</button>
+            <a class="m-3 rounded button-polygon" id="btnKML">Descargar KML</a>
+            <a class="m-3 rounded button-polygon" id="btnJson">Descargar GEOJSON</a>
 
 
+        </div>
+        <h4 style="margin-bottom:3px;margin-top: -40px;">Datos seleccionados:</h4>
+        <div id="resumen" style="display: inline-block;"></div>
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Provincia</th>
+                    <th>ID Poligono</th>
+                    <th>Localidad</th>
+                    <th>Score Promedio %</th>
+                    <th>Q Geo</th>
+                    <th>Índice Geo</th>
+                    <th>Q Estimada</th>
+                    <th>Q Personas Priorizadas</th>
+                    <th>Hogares Estimados</th>
+                    <th>Observado</th>
+                    <th class="hidden-column">Shape Texto</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td class="text-uppercase mx-auto">{{ dato.distrito_nombre }}</td>
+                    <td class="id_poligono">{{dato.ID_poligono}}</td>
+                    <td class="text-uppercase">{{ dato.seccion_nombre }}</td>
+
+                    <td>{{ dato.score_promedio }}%</td>
+                    <td>{{ dato.cant_personas }}</td>
+                    <td>{{ dato.indice_geo }}</td>
+                    <td>{{ dato.cant_personas }}</td>
+                    <td>{{ dato.cant_personas_prio }}</td>
+                    <td>{{ dato.cant_hogares }}</td>
+                    <td>{{ dato.observado }}</td>
+                    <td class="shape hidden-column">{{ dato.shape_texto }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
 
-    <script>
 
-        let polygonList = []
-        let polygonID = []
-        localStorage.setItem('polygonList', JSON.stringify(polygonList));
-        localStorage.setItem('polygonID', JSON.stringify(polygonList));
 
-        function actualizarResumen() {
-            polygonList = []
-            polygonID = []
-            var seleccionados = $('#myTable tbody input.row-checkbox:checked');
-            var resumenHtml = '';
-            // console.log(seleccionados);
-            if (seleccionados.length > 0) {
-                var totalScores = 0;
-                var cantidadSeleccionados = seleccionados.length;
+        <script>
 
-                seleccionados.each(function () {
-                    var row = $(this).closest('tr');
+            let polygonList = [];
+            let polygonID = [];
+            localStorage.setItem('polygonList', JSON.stringify(polygonList));
+            localStorage.setItem('polygonID', JSON.stringify(polygonList));
 
-                    polygonID.push(row.find('td:eq(2)').text());
-                    polygonList.push(row.find('td:eq(11)').text());
+            function actualizarResumen() {
+                polygonList = []
+                polygonID = []
+                var seleccionados = $('#myTable tbody input.row-checkbox:checked');
+                var resumenHtml = '';
+                var totalQGeo = 0;
+                var totalQEstimada = 0;
+                var totalQPersonasPriorizadas = 0;
+                var totalHogaresEstimados = 0;
+                // console.log(seleccionados);
+                if (seleccionados.length > 0) {
+                    var totalScores = 0;
+                    var cantidadSeleccionados = seleccionados.length;
 
-                    var scorePromedio = parseFloat(row.find('td:eq(4)').text());
-                    totalScores += scorePromedio; // suma los datos
-                    localStorage.setItem('polygonList', JSON.stringify(polygonList));
-                    localStorage.setItem('polygonID', JSON.stringify(polygonID));
-                });
+                    seleccionados.each(function () {
+                        var row = $(this).closest('tr');
 
-                var porcentaje = (totalScores / cantidadSeleccionados).toFixed(2); // saca el porcentaje 
-                resumenHtml = '<span>Total de poligonos seleccionados: ' + cantidadSeleccionados + '</span>';
-                resumenHtml += '<span> | Porcentaje de score promedio: ' + porcentaje + '%</span>';
-            } else {
-                resumenHtml = '<span>No hay elementos seleccionados.</span>';
+                        polygonID.push(row.find('td:eq(2)').text());
+                        polygonList.push(row.find('td:eq(11)').text());
+
+                        var scorePromedio = parseFloat(row.find('td:eq(4)').text());
+                        totalScores += scorePromedio; // suma los datos
+                        // Suma los valores de las columnas específicas
+                        totalQGeo += parseFloat(row.find('td:eq(5)').text());
+                        totalQEstimada += parseFloat(row.find('td:eq(7)').text());
+                        totalQPersonasPriorizadas += parseFloat(row.find('td:eq(8)').text());
+                        totalHogaresEstimados += parseFloat(row.find('td:eq(9)').text());
+
+                        localStorage.setItem('polygonList', JSON.stringify(polygonList));
+                        localStorage.setItem('polygonID', JSON.stringify(polygonID));
+                    });
+
+                    var porcentaje = (totalScores / cantidadSeleccionados).toFixed(2); // saca el porcentaje 
+                    resumenHtml = '<span>Total de poligonos seleccionados: ' + cantidadSeleccionados + '</span>';
+                    resumenHtml += '<span> | Porcentaje de score promedio: ' + porcentaje + '%</span>';
+                    // Agregar las sumas al resumen
+                    resumenHtml += '<span> | Suma Q Geo: ' + totalQGeo + '</span>';
+                    resumenHtml += '<span> | Suma Q Estimada: ' + totalQEstimada + '</span>';
+                    resumenHtml += '<span> | Suma Q Personas Priorizadas: ' + totalQPersonasPriorizadas + '</span>';
+                    resumenHtml += '<span> | Suma Hogares Estimados: ' + totalHogaresEstimados + '</span>';
+                } else {
+                    resumenHtml = '<span>No hay elementos seleccionados.</span>';
+                }
+
+                $('#resumen').html(resumenHtml);
             }
 
-            $('#resumen').html(resumenHtml);
-        }
+            $(document).ready(function () {
+                var table = $('#myTable').DataTable({
+                    ordering: true, // Sirve para ordenar las columnas 
+                    language: {
+                        url: "{% static 'js/Espanol.json' %}" // Especifica la ruta al archivo de idioma en español
+                    }
+                });
 
-        $(document).ready(function () {
-            var table = $('#myTable').DataTable({
-                ordering: true, // Sirve para ordenar las columnas 
-                language: {
-                    url: "{% static 'js/Espanol.json' %}" // Especifica la ruta al archivo de idioma en español
-                }
+                $('#myTable thead th input[type="checkbox"]').on('click', function () {
+                    if (this.checked) {
+                        $('#myTable tbody input.row-checkbox').prop('checked', true);
+                    } else {
+                        $('#myTable tbody input.row-checkbox').prop('checked', false);
+                    }
+
+                    actualizarResumen();
+                });
+
+                $('#myTable tbody').on('click', 'input.row-checkbox', function () {
+                    actualizarResumen();
+                });
             });
-
-            $('#myTable thead th input[type="checkbox"]').on('click', function () {
-                if (this.checked) {
-                    $('#myTable tbody input.row-checkbox').prop('checked', true);
-                } else {
-                    $('#myTable tbody input.row-checkbox').prop('checked', false);
-                }
-
+            // Agrega un evento de click al botón para marcar todos los checkbox.
+            $('#buttonAll').on('click', function () {
+                $('#myTable tbody input.row-checkbox').prop('checked', true);
                 actualizarResumen();
             });
 
-            $('#myTable tbody').on('click', 'input.row-checkbox', function () {
-                actualizarResumen();
-            });
-        });
-        // Agrega un evento de click al botón para marcar todos los checkbox.
-        $('#buttonAll').on('click', function () {
-            $('#myTable tbody input.row-checkbox').prop('checked', true);
-            actualizarResumen();
-        });
 
+        </script>
 
-    </script>
-
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/Espanol.json' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/Espanol.json' %}"></script>
 </body>
 
 </html>
