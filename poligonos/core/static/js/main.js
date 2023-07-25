@@ -191,12 +191,12 @@ btnJson.addEventListener('click', () => {
     let geojsonString = JSON.stringify(geojson, null, 2);
     let geojsonReady = JSON.parse(geojsonString)
 
-    let jsonBlob = new Blob([geojsonReady], { type: "application/json" });
+    let jsonBlob = new Blob([geojsonReady], { type: "application/vnd.geo+json" });
 
     let url = URL.createObjectURL(jsonBlob);
 
     btnJson.href = url;
-    btnJson.download = 'data.json';
+    btnJson.download = 'data.geojson.json';
 
 });
 
@@ -225,6 +225,8 @@ btnKML.addEventListener('click', () => {
             feature.unset('name');
         }
     });
+
+    console.log(polygonFeatures);
 
     let kmlString = kmlFormat.writeFeatures(polygonFeatures, {
         dataProjection: 'EPSG:4326',
