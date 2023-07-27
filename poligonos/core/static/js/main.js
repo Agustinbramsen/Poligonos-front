@@ -6,8 +6,41 @@ const polygonSelect = null
 const shape = [];
 const idPolygons = [];
 
+const dataCSVFront = document.querySelectorAll('.data_csv')
+
+
+
+const dataCSV = [...dataCSVFront].map(row => {
+    let idPoligono = row.querySelector('.id_poligono').innerText;
+    let distritoNombre = row.querySelector('.distrito_nombre').innerText;
+    let seccionNombre = row.querySelector('.seccion_nombre').innerText;
+    let scorePromedio = row.querySelector('.score_promedio').innerText;
+    let cantPersonas = row.querySelector('.cant_personas').innerText;
+    let indiceGeo = row.querySelector('.indice_geo').innerText;
+    let qEstimada = row.querySelector('.q_estimada').innerText;
+    let cantPersonasPrio = row.querySelector('.cant_personas_prio').innerText;
+    let cantHogares = row.querySelector('.cant_hogares').innerText;
+    let observado = row.querySelector('.observado').innerText;
+    return ({
+        idPoligono,
+        distritoNombre,
+        seccionNombre,
+        scorePromedio,
+        cantPersonas,
+        indiceGeo,
+        qEstimada,
+        cantPersonasPrio,
+        cantHogares,
+        observado
+    })
+});
+
+let filteredDataCSV = [];
+
+
+
 for (let i = 0; i < cells.length; i++) {
-    
+
     shape.push(cells[i].innerText);
     idPolygons.push(idPolygonsFromFront[i].innerText);
 }
@@ -28,7 +61,7 @@ const parsedPolygons = shape.map(polygonString => {
 
 const centerPointResult = parsedPolygons.map(polygon => {
     const firstPair = polygon[0];
-    return firstPair.split(' '); 
+    return firstPair.split(' ');
 })
 
 
@@ -43,8 +76,8 @@ buttonAllPolygons.addEventListener('click', () => {
         return listPolygon.map(parCoord => ol.proj.fromLonLat(parCoord.split(' ').reverse()))
 
     })
-    console.log(arrayPolygons.length === idPolygons.length);
-    arrayPolygons.forEach((coords,i) => {
+
+    arrayPolygons.forEach((coords, i) => {
         let polygon = new ol.geom.Polygon([coords]);
         let feature = new ol.Feature(polygon);
         let center = polygon.getInteriorPoint().getCoordinates();
@@ -70,6 +103,8 @@ buttonAllPolygons.addEventListener('click', () => {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857'
     });
+    filteredDataCSV = dataCSV
+    console.log(filteredDataCSV);
 })
 
 
@@ -122,6 +157,7 @@ let map = new ol.Map({
 
 let geojson;
 
+
 buttonList.addEventListener('click', () => {
     source.clear();
     const polygonSelects = JSON.parse(localStorage.getItem('polygonList'))
@@ -145,9 +181,9 @@ buttonList.addEventListener('click', () => {
             arrayPolygon.push(ol.proj.fromLonLat(coord.reverse()))
         })
         let polygon = new ol.geom.Polygon([arrayPolygon])
-        let feature1 = new ol.Feature(polygon);
+        let feature = new ol.Feature(polygon);
 
-        //Label en el centro de los poligonos
+        
         let center = polygon.getInteriorPoint().getCoordinates();
 
         let label = new ol.Feature({
@@ -156,7 +192,7 @@ buttonList.addEventListener('click', () => {
         });
 
 
-        source.addFeature(feature1);
+        source.addFeature(feature);
         source.addFeature(label);
 
     })
@@ -173,32 +209,55 @@ buttonList.addEventListener('click', () => {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857'
     });
+    
+    filteredDataCSV = dataCSV.filter(data => polygonID.includes(data.idPoligono));
 
 })
 
 const btnKML = document.getElementById('btnKML');
 const btnJson = document.getElementById('btnJson');
 
+
 btnJson.addEventListener('click', () => {
-    console.log(geojson);
-    if (!geojson) return (
+    if (!source.getFeatures().length) return (
         Swal.fire({
             title: 'GeoJSON Vacío',
             text: 'Por favor seleccione los polígonos a descargar',
             icon: 'error',
         })
     )
-    let geojsonString = JSON.stringify(geojson, null, 2);
-    let geojsonReady = JSON.parse(geojsonString)
 
-    let jsonBlob = new Blob([geojsonReady], { type: "application/vnd.geo+json" });
+    let features = source.getFeatures();
+    let polygonFeatures = features.filter(function (feature) {
+        return feature.getGeometry().getType() === 'Polygon';
+    });
+
+    polygonFeatures.forEach((feature, index) => {
+        feature.set('id', idPolygons[index]);
+        feature.set('name', `Polígono ${idPolygons[index]}`);
+    });
+
+
+    let geojsonFormat = new ol.format.GeoJSON();
+    let geojsonFeatures = geojsonFormat.writeFeaturesObject(polygonFeatures, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857'
+    });
+
+    let geojsonString = JSON.stringify(geojsonFeatures, null, 2);
+
+    let jsonBlob = new Blob([geojsonString], { type: "application/vnd.geo+json" });
 
     let url = URL.createObjectURL(jsonBlob);
 
     btnJson.href = url;
     btnJson.download = 'data.geojson.json';
 
+    setTimeout(() => {
+        JSONtoCSV(filteredDataCSV, 'data.csv')
+    }, 1000);  
 });
+
 
 
 
@@ -216,14 +275,14 @@ btnKML.addEventListener('click', () => {
     )
 
     let features = source.getFeatures();
+    
     let polygonFeatures = features.filter(function (feature) {
         return feature.getGeometry().getType() === 'Polygon';
     });
 
-    polygonFeatures.forEach(feature => {
-        if (feature.get('name') === null) {
-            feature.unset('name');
-        }
+    polygonFeatures.forEach((feature, index) => {
+        feature.set('id', idPolygons[index]);
+        feature.set('name', `Polígono ${idPolygons[index]}`);
     });
 
     console.log(polygonFeatures);
@@ -237,7 +296,38 @@ btnKML.addEventListener('click', () => {
 
     let url = URL.createObjectURL(kmlBlob);
 
-        btnKML.href = url;
-        btnKML.download = 'data.kml';
+    btnKML.href = url;
+    btnKML.download = 'data.kml';
 
+    
+
+    
+    setTimeout(() => {
+        JSONtoCSV(filteredDataCSV, 'data.csv')
+    }, 1000);  
 });
+
+
+function JSONtoCSV(jsonData, filename) {
+    let array = typeof jsonData != 'object' ? JSON.parse(jsonData) : jsonData;
+    let csv = '';
+    
+    csv += Object.keys(array[0]).join(',') + '\n';
+
+    array.forEach(function(row){
+        csv += Object.values(row).join(',') + '\n';
+    });
+
+    let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    let link = document.createElement("a");
+
+    if (link.download !== undefined) {
+        let url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}

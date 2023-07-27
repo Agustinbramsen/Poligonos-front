@@ -208,26 +208,26 @@
             </thead>
             <tbody>
                 {% for dato in datos %}
-                <tr>
+                <tr class="data_csv">
                     <td><input type="checkbox" class="row-checkbox"></td>
-                    <td class="text-uppercase mx-auto">{{ dato.distrito_nombre }}</td>
+                    <td class="text-uppercase mx-auto distrito_nombre">{{ dato.distrito_nombre }}</td>
                     <td class="id_poligono">{{dato.ID_poligono}}</td>
-                    <td class="text-uppercase">{{ dato.seccion_nombre }}</td>
+                    <td class="text-uppercase seccion_nombre">{{ dato.seccion_nombre }}</td>
 
-                    <td>{{ dato.score_promedio }}%</td>
-                    <td>{{ dato.cant_personas }}</td>
-                    <td>{{ dato.indice_geo }}</td>
-                    <td>{{ dato.cant_personas }}</td>
-                    <td>{{ dato.cant_personas_prio }}</td>
-                    <td>{{ dato.cant_hogares }}</td>
-                    <td>{{ dato.observado }}</td>
+                    <td class="score_promedio">{{ dato.score_promedio }}%</td>
+                    <td class="cant_personas">{{ dato.cant_personas }}</td>
+                    <td class="indice_geo">{{ dato.indice_geo }}</td>
+                    <td class="q_estimada">{{ dato.q_estimada }}</td>
+                    <td class="cant_personas_prio">{{ dato.cant_personas_prio }}</td>
+                    <td class="cant_hogares">{{ dato.cant_hogares }}</td>
+                    <td class="observado">{{ dato.observado }}</td>
                     <td class="shape hidden-column">{{ dato.shape_texto }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-
+        
 
 
         <script>

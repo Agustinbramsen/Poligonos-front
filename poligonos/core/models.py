@@ -13,6 +13,7 @@ class DatosPoligonos(models.Model):
     seccion_nombre = models.CharField(max_length=100)
     score_promedio = models.FloatField()
     cant_personas = models.IntegerField()
+    q_estimada = models.IntegerField()
     cant_personas_prio = models.IntegerField()
     indice_geo = models.FloatField()
     indice_hogar = models.FloatField()
@@ -32,6 +33,7 @@ class DatosPoligonos(models.Model):
             'score_promedio': self.score_promedio,
             'cant_personas': self.cant_personas,
             'cant_personas_prio': self.cant_personas_prio,
+            'q_estimada': self.q_estimada,
             'indice_hogar': self.indice_hogar,
             'cant_hogares': self.cant_hogares,
             'observado': self.observado,
