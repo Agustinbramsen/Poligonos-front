@@ -45,7 +45,6 @@ for (let i = 0; i < cells.length; i++) {
     idPolygons.push(idPolygonsFromFront[i].innerText);
 }
 
-console.log(idPolygons);
 
 const parsedPolygons = shape.map(polygonString => {
 
@@ -80,11 +79,11 @@ buttonAllPolygons.addEventListener('click', () => {
     arrayPolygons.forEach((coords, i) => {
         let polygon = new ol.geom.Polygon([coords]);
         let feature = new ol.Feature(polygon);
-        let center = polygon.getInteriorPoint().getCoordinates();
-
+        let center = polygon.getInteriorPoint().getCoordinates();D
         let label = new ol.Feature({
             geometry: new ol.geom.Point(center),
-            name: idPolygons[i],
+            name: dataCSV[i].idPoligono,
+            id: dataCSV[i].idPoligono
         });
 
 
@@ -104,7 +103,7 @@ buttonAllPolygons.addEventListener('click', () => {
         featureProjection: 'EPSG:3857'
     });
     filteredDataCSV = dataCSV
-    console.log(filteredDataCSV);
+    
 })
 
 
@@ -157,7 +156,7 @@ let map = new ol.Map({
 
 let geojson;
 
-
+let idPoligon = []
 buttonList.addEventListener('click', () => {
     source.clear();
     const polygonSelects = JSON.parse(localStorage.getItem('polygonList'))
@@ -174,7 +173,7 @@ buttonList.addEventListener('click', () => {
     });
 
     readyCoordinates.forEach((coordenada, i) => {
-
+        
         let arrayPolygon = []
         coordenada.forEach(coord => {
 
@@ -189,6 +188,7 @@ buttonList.addEventListener('click', () => {
         let label = new ol.Feature({
             geometry: new ol.geom.Point(center),
             name: polygonID[i],
+            id: polygonID[i]
         });
 
 
@@ -196,6 +196,7 @@ buttonList.addEventListener('click', () => {
         source.addFeature(label);
 
     })
+    
 
     let geojsonFormat = new ol.format.GeoJSON();
 
@@ -205,13 +206,22 @@ buttonList.addEventListener('click', () => {
         }
         return feature
     });
+    
     geojson = geojsonFormat.writeFeatures(dataForJSON, {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857'
     });
+    let geo = JSON.parse(geojson)
+    
+    geo.features.forEach(feature => {
+        if (feature.properties !== null && feature.properties.id) {
+          idPoligon.push(feature.properties.id)
+        }
+      });
+    
     
     filteredDataCSV = dataCSV.filter(data => polygonID.includes(data.idPoligono));
-
+    
 })
 
 const btnKML = document.getElementById('btnKML');
@@ -226,15 +236,17 @@ btnJson.addEventListener('click', () => {
             icon: 'error',
         })
     )
-
+    
     let features = source.getFeatures();
     let polygonFeatures = features.filter(function (feature) {
         return feature.getGeometry().getType() === 'Polygon';
     });
 
     polygonFeatures.forEach((feature, index) => {
-        feature.set('id', idPolygons[index]);
-        feature.set('name', `Polígono ${idPolygons[index]}`);
+        
+        
+        feature.set('id', filteredDataCSV[index].idPoligono);
+        feature.set('name', `Polígono ${filteredDataCSV[index].idPoligono}`);
     });
 
 
@@ -281,11 +293,10 @@ btnKML.addEventListener('click', () => {
     });
 
     polygonFeatures.forEach((feature, index) => {
-        feature.set('id', idPolygons[index]);
-        feature.set('name', `Polígono ${idPolygons[index]}`);
+        feature.set('id', filteredDataCSV[index].idPoligono);
+        feature.set('name', `Polígono ${filteredDataCSV[index].idPoligono}`);
     });
 
-    console.log(polygonFeatures);
 
     let kmlString = kmlFormat.writeFeatures(polygonFeatures, {
         dataProjection: 'EPSG:4326',
@@ -299,9 +310,6 @@ btnKML.addEventListener('click', () => {
     btnKML.href = url;
     btnKML.download = 'data.kml';
 
-    
-
-    
     setTimeout(() => {
         JSONtoCSV(filteredDataCSV, 'data.csv')
     }, 1000);  
