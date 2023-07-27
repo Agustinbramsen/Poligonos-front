@@ -79,7 +79,7 @@ buttonAllPolygons.addEventListener('click', () => {
     arrayPolygons.forEach((coords, i) => {
         let polygon = new ol.geom.Polygon([coords]);
         let feature = new ol.Feature(polygon);
-        let center = polygon.getInteriorPoint().getCoordinates();D
+        let center = polygon.getInteriorPoint().getCoordinates();
         let label = new ol.Feature({
             geometry: new ol.geom.Point(center),
             name: dataCSV[i].idPoligono,
