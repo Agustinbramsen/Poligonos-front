@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-#w7(ed)9w!0b*g37d=e2u$t3klpcc5!w_%474ok+z8^&n1wz8+
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://poligonos.eligeargentina.com']
 
 
 # Application definition
