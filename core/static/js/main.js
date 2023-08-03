@@ -21,6 +21,8 @@ const dataCSV = [...dataCSVFront].map(row => {
     let cantPersonasPrio = row.querySelector('.cant_personas_prio').innerText;
     let cantHogares = row.querySelector('.cant_hogares').innerText;
     let observado = row.querySelector('.observado').innerText;
+    let shape = row.querySelector('.shape').innerText;
+    // console.log(shape, 'row shape');
     return ({
         idPoligono,
         distritoNombre,
@@ -31,10 +33,13 @@ const dataCSV = [...dataCSVFront].map(row => {
         qEstimada,
         cantPersonasPrio,
         cantHogares,
-        observado
+        observado,
+        shape
     })
 });
-
+// dataCSV.forEach(data =>{
+//     console.log(data.shape);
+// })
 let filteredDataCSV = [];
 
 
@@ -56,7 +61,18 @@ const parsedPolygons = shape.map(polygonString => {
     return coordinatesPairs;
 });
 
+const allPolygons = dataCSV.map(polygonString => {
 
+    const coordinatesString = polygonString.shape.replace(/[^-0-9., ]/g, '');
+
+    const coordinatesPairs = coordinatesString.split(',');
+
+    const id = polygonString.idPoligono
+
+    return {coordinatesPairs, id};
+});
+
+console.log(allPolygons);
 
 const centerPointResult = parsedPolygons.map(polygon => {
     const firstPair = polygon[0];
@@ -71,14 +87,15 @@ const buttonAllPolygons = document.getElementById('buttonAll');
 buttonAllPolygons.addEventListener('click', () => {
     source.clear();
 
-    const arrayPolygons = parsedPolygons.map(listPolygon => {
-        return listPolygon.map(parCoord => ol.proj.fromLonLat(parCoord.split(' ').reverse()))
+    const arrayPolygons = allPolygons.map(listPolygon => {
+        return listPolygon.coordinatesPairs.map(parCoord => ol.proj.fromLonLat(parCoord.split(' ').reverse()))
 
     })
 
     arrayPolygons.forEach((coords, i) => {
         let polygon = new ol.geom.Polygon([coords]);
         let feature = new ol.Feature(polygon);
+        feature.set('featureId', dataCSV[i].idPoligono);
         let center = polygon.getInteriorPoint().getCoordinates();
         let label = new ol.Feature({
             geometry: new ol.geom.Point(center),
@@ -103,7 +120,7 @@ buttonAllPolygons.addEventListener('click', () => {
         featureProjection: 'EPSG:3857'
     });
     filteredDataCSV = dataCSV
-    
+    console.log(filteredDataCSV);
 })
 
 
@@ -181,7 +198,7 @@ buttonList.addEventListener('click', () => {
         })
         let polygon = new ol.geom.Polygon([arrayPolygon])
         let feature = new ol.Feature(polygon);
-
+        feature.set('featureId', polygonID[i]);
         
         let center = polygon.getInteriorPoint().getCoordinates();
 
@@ -242,11 +259,12 @@ btnJson.addEventListener('click', () => {
         return feature.getGeometry().getType() === 'Polygon';
     });
 
-    polygonFeatures.forEach((feature, index) => {
-        
-        
-        feature.set('id', filteredDataCSV[index].idPoligono);
-        feature.set('name', `Polígono ${filteredDataCSV[index].idPoligono}`);
+    polygonFeatures.forEach((feature) => {
+        const id = feature.get('featureId');
+        const data = filteredDataCSV.find(d => d.idPoligono === id);
+        if(data) {
+            feature.set('name', `Polígono ${data.idPoligono}`);
+        }
     });
 
 
@@ -287,14 +305,17 @@ btnKML.addEventListener('click', () => {
     )
 
     let features = source.getFeatures();
-    
+    console.log();
     let polygonFeatures = features.filter(function (feature) {
         return feature.getGeometry().getType() === 'Polygon';
     });
 
-    polygonFeatures.forEach((feature, index) => {
-        feature.set('id', filteredDataCSV[index].idPoligono);
-        feature.set('name', `Polígono ${filteredDataCSV[index].idPoligono}`);
+    polygonFeatures.forEach((feature) => {
+        const id = feature.get('featureId');
+        const data = filteredDataCSV.find(d => d.idPoligono === id);
+        if(data) {
+            feature.set('name', `Polígono ${data.idPoligono}`);
+        }
     });
 
 
