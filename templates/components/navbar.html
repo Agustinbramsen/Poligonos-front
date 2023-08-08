@@ -1,0 +1,31 @@
+{% load static %}
+<header style="background-color:#fff !important ;" class="navbar navbar-expand-lg bg-light shadow-sm">
+  <div class="container">
+    <a href="{% url 'home' %}" class="navbar-brand">
+      <img src="{% static 'img/Logo-2023.png' %}" width="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1"
+      aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <nav id="navbarCollapse1" class="collapse navbar-collapse">
+      <hr class="d-lg-none mt-3 mb-2">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a href="{% url 'home' %}" class="nav-link active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'form' %}" class="nav-link active">Polígonos</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'datosh' %}" class="nav-link active">Datos Huerfanos y Guia Telefónica</a>
+        </li>
+      </ul>
+      <a href="" style="background-color: #61b0a3; padding: 10px 20px;"
+        class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-1 align-content-center">
+        <i class="bx bx-user fs-lg me-1 text-center"></i>
+        Cerrar sesión
+      </a>
+    </nav>
+  </div>
+</header>

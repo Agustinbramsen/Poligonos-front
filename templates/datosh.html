@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block base %}
+
+        
+<div class="container my-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center">
+                <div class="mb-3">
+                    <select name="data_type" id="data-select" class="form-select">
+                        <option value="" disabled selected></option>
+                        <option value="datosh">Datos Huerfanos</option>
+                        <option value="guiast">Guías Telefónicas</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select name="type" id="type-select" class="form-select" disabled>
+                        
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select name="tag" id="tag-select" class="form-select" disabled>
+                        
+                    </select>
+                </div>
+                <button id="sendUrl" class="btn btn-primary">Mostrar datos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}
