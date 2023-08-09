@@ -1,6 +1,6 @@
 const datos = document.getElementById('data-select');
 const tipo_o_prov = document.getElementById('type-select');
-const tag_distrito = document.getElementById('tag-select');
+const tag_distrito = document.getElementById('p-select');
 const buttonUrl = document.getElementById('sendUrl');
 
 let url;
@@ -8,8 +8,28 @@ let url;
 datos.addEventListener('change', function () {
   const selectedApp = this.value;
 
+  const tagSelect = document.getElementById('tag-select');
+  if (tagSelect) tagSelect.remove();
+
   if (selectedApp === 'datosh') {
-    url = '/tipo_de_dato/';
+    url = 'tipo_de_dato/';
+
+    const container = document.getElementById('container-form');
+
+    const newDiv = document.createElement('div');
+    newDiv.className = 'mb-3';
+
+    const newSelect = document.createElement('select');
+    newSelect.name = 'tag';
+    newSelect.id = 'tag-select';
+    newSelect.className = 'form-select';
+    newSelect.disabled = true;
+
+    newDiv.appendChild(newSelect);
+    
+    // Encuentra el botón para insertar el nuevo div antes de él
+    const button = document.getElementById('sendUrl');
+    container.insertBefore(newDiv, button);
 
   } else if (selectedApp === 'guiast') {
     url = '/guiast/';
@@ -23,7 +43,7 @@ datos.addEventListener('change', function () {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      
+      console.log(data);
       let dataSelector = document.getElementById('type-select');
       dataSelector.innerHTML = '<option value="">Selecciona un dato</option>';
       data.types.forEach(item => {
@@ -33,6 +53,8 @@ datos.addEventListener('change', function () {
         dataSelector.appendChild(option);
       });
       dataSelector.disabled = false;
+      
+
     })
     .catch(error => {
       console.error('Error al cargar los datos:', error);
@@ -44,16 +66,16 @@ tipo_o_prov.addEventListener('change', function () {
   const choice = this.value;
 
   tagUrl = `${url}${choice}`;
+  console.log(tagUrl);
   
 
   fetch(tagUrl)
     .then(response => response.json())
     .then(data => {
-      
+      console.log(data);
       tag_distrito.innerHTML = '<option value="">Selecciona un dato</option>';
       data.types.forEach(item => {
         if (item.value && item.text) {
-
           const option = document.createElement('option');
           option.value = item.value;
           option.textContent = item.text;
@@ -61,6 +83,8 @@ tipo_o_prov.addEventListener('change', function () {
         }
       });
       tag_distrito.disabled = false;
+      const tagS = document.getElementById('tag-select');
+      tagS.disabled = false;
     })
     .catch(error => {
       console.error('Error al cargar los datos:', error);
@@ -68,6 +92,8 @@ tipo_o_prov.addEventListener('change', function () {
 })
 
 let finalUrl;
+
+// ACA TENEMOS QUE CREAR LA LÓGICA QUE DEBEMOS CONTINUAR PARA EL SELECTOR DE TAGS
 
 
 let dataToCSV;

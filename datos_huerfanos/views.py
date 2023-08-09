@@ -18,6 +18,19 @@ def data_type(request):
     return JsonResponse(data)
 
 
+def get_distritos(request, data_type):    
+    if data_type == 'telefono':
+        filtered_data = DatoHuerfanoTelefono.objects.values_list('distrito_nombre').distinct()
+    elif data_type == 'celular':
+        filtered_data = DatoHuerfanoCelular.objects.values_list('distrito_nombre').distinct()
+    elif data_type == 'email':
+        filtered_data = DatoHuerfanoEmail.objects.values_list('distrito_nombre').distinct()
+    
+    distritos = [{"value": filter[0], "text": filter[0]} for filter in filtered_data]
+    distritos.insert(0, {"value": "Todos", "text": "Todos"})
+
+    return JsonResponse({'types': distritos})
+
 
 def data_tags(request, data_type):
     if data_type == 'celular':

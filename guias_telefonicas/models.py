@@ -1,16 +1,16 @@
 from django.db import models
 
 class GuiaTelefonicaBuenosaires(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -19,16 +19,16 @@ class GuiaTelefonicaBuenosaires(models.Model):
 
 
 class GuiaTelefonicaCaba(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -37,16 +37,16 @@ class GuiaTelefonicaCaba(models.Model):
 
 
 class GuiaTelefonicaCatamarca(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -55,16 +55,16 @@ class GuiaTelefonicaCatamarca(models.Model):
 
 
 class GuiaTelefonicaChaco(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -73,16 +73,16 @@ class GuiaTelefonicaChaco(models.Model):
 
 
 class GuiaTelefonicaChubut(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -91,16 +91,16 @@ class GuiaTelefonicaChubut(models.Model):
 
 
 class GuiaTelefonicaCordoba(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -109,16 +109,16 @@ class GuiaTelefonicaCordoba(models.Model):
 
 
 class GuiaTelefonicaCorrientes(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -127,16 +127,16 @@ class GuiaTelefonicaCorrientes(models.Model):
 
 
 class GuiaTelefonicaEntrerios(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -145,16 +145,16 @@ class GuiaTelefonicaEntrerios(models.Model):
 
 
 class GuiaTelefonicaFormosa(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -163,16 +163,16 @@ class GuiaTelefonicaFormosa(models.Model):
 
 
 class GuiaTelefonicaJujuy(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -181,16 +181,16 @@ class GuiaTelefonicaJujuy(models.Model):
 
 
 class GuiaTelefonicaLapampa(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -199,16 +199,16 @@ class GuiaTelefonicaLapampa(models.Model):
 
 
 class GuiaTelefonicaLarioja(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -217,16 +217,16 @@ class GuiaTelefonicaLarioja(models.Model):
 
 
 class GuiaTelefonicaMendoza(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -235,16 +235,16 @@ class GuiaTelefonicaMendoza(models.Model):
 
 
 class GuiaTelefonicaMisiones(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -253,16 +253,16 @@ class GuiaTelefonicaMisiones(models.Model):
 
 
 class GuiaTelefonicaNeuquen(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -271,16 +271,16 @@ class GuiaTelefonicaNeuquen(models.Model):
 
 
 class GuiaTelefonicaRionegro(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -289,16 +289,16 @@ class GuiaTelefonicaRionegro(models.Model):
 
 
 class GuiaTelefonicaSalta(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -307,16 +307,16 @@ class GuiaTelefonicaSalta(models.Model):
 
 
 class GuiaTelefonicaSanjuan(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -325,16 +325,16 @@ class GuiaTelefonicaSanjuan(models.Model):
 
 
 class GuiaTelefonicaSanluis(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -343,16 +343,16 @@ class GuiaTelefonicaSanluis(models.Model):
 
 
 class GuiaTelefonicaSantacruz(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -361,16 +361,16 @@ class GuiaTelefonicaSantacruz(models.Model):
 
 
 class GuiaTelefonicaSantafe(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -379,16 +379,16 @@ class GuiaTelefonicaSantafe(models.Model):
 
 
 class GuiaTelefonicaSantiagodelestero(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -397,16 +397,16 @@ class GuiaTelefonicaSantiagodelestero(models.Model):
 
 
 class GuiaTelefonicaTierradelfuego(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -415,16 +415,16 @@ class GuiaTelefonicaTierradelfuego(models.Model):
 
 
 class GuiaTelefonicaTucuman(models.Model):
-    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  # Field name made lowercase.
-    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  # Field name made lowercase.
-    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  # Field name made lowercase.
+    tipoguia = models.CharField(db_column='TipoGuia', max_length=1, blank=True, null=True)  
+    titular = models.CharField(db_column='Titular', max_length=100, blank=True, null=True)  
+    telefono = models.CharField(db_column='Telefono', max_length=100, blank=True, null=True)  
+    direccion = models.CharField(db_column='Direccion', max_length=100, blank=True, null=True)  
+    localidad = models.CharField(db_column='Localidad', max_length=100, blank=True, null=True)  
+    provincia = models.CharField(db_column='Provincia', max_length=100, blank=True, null=True)  
+    rubro = models.CharField(db_column='Rubro', max_length=100, blank=True, null=True)  
+    tipo_documento = models.CharField(db_column='Tipo_documento', max_length=100, blank=True, null=True)  
+    nro_documento = models.CharField(db_column='Nro_documento', max_length=100, blank=True, null=False, primary_key=True)  
+    fecha_nac = models.CharField(db_column='Fecha_nac', max_length=100, blank=True, null=True)  
     partido = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
