@@ -1,15 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import DatoHuerfanoTelefono, DatoHuerfanoCelular, DatoHuerfanoEmail
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.core.serializers import serialize
 import json
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            print("User authenticated:", user)
+            auth_login(request, user)
+            return redirect('home')
+        else:
+            print("Authentication failed for username:", username)
+            messages.error(request, 'Credenciales inválidas. Por favor, inténtelo de nuevo.')
+
+    return render(request, 'login.html')
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')  
+
+
+@login_required
 def datosh(request):
     return render(request, 'datosh.html')
 
-
+@login_required
 def data_type(request):
 
     data_types = ['celular', 'email', 'telefono']
@@ -18,7 +45,7 @@ def data_type(request):
     return JsonResponse(data)
 
 
-
+@login_required
 def data_tags(request, data_type):
     if data_type == 'celular':
         tags = DatoHuerfanoCelular.objects.values_list(
@@ -34,7 +61,7 @@ def data_tags(request, data_type):
     tags_list.insert(0, {"value": "Todos", "text": "Todos"})
     return JsonResponse({'types': tags_list})
 
-
+@login_required
 def view_data(request, data_type, tag):
 
     if data_type == 'celular':
