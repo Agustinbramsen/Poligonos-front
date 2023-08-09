@@ -12,6 +12,19 @@
         align-items: center;
         font-size: 2rem;
         position: relative;
+        border: none;
+        color: #fff;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-main.poligonos {
+        background-color: #61b0a3; /* Color personalizado para Polígonos */
+    }
+
+    .btn-main.datos {
+        background-color: #ffa500; /* Color personalizado para Datos */
     }
 
     .btn-main::before {
@@ -35,15 +48,26 @@
         background-size: 100% 100%;
     }
 
+    .btn-main:hover {
+        background-color: #428bca; /* Cambio de color al pasar el ratón */
+    }
+
     .btn-main:hover::before {
         opacity: 1;
     }
+    hr {
+        background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d);
+        padding: 5px 100px;
+        border: none;
+        margin: 0px;
+        opacity: 1;
+    }
+
 </style>
-
+<hr>
 <div class="container d-flex justify-content-center" style="margin-top: 4rem;">
-    <a class="btn btn-primary btn-main poligonos" href="{% url 'form' %}">Polígonos</a>
-    <a class="btn btn-success btn-main datos" href="{% url 'datosh' %}">Datos Huerfanos y Guía Telefónica</a>
+    <a class="btn btn-main poligonos" href="{% url 'form' %}">Polígonos</a>
+    <a class="btn btn-main datos" href="{% url 'datosh' %}">Datos Huerfanos/Guía Telefónica</a>
 </div>
-
 
 {% endblock %}

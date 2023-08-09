@@ -18,10 +18,10 @@
           <a href="{% url 'form' %}" class="nav-link active">Polígonos</a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'datosh' %}" class="nav-link active">Datos Huerfanos y Guia Telefónica</a>
+          <a href="{% url 'datosh' %}" class="nav-link active">Datos Huerfanos/Guia Telefónica</a>
         </li>
       </ul>
-      <a href="" style="background-color: #61b0a3; padding: 10px 20px;"
+      <a href="{% url 'logout' %}" style="background-color: #61b0a3; padding: 10px 20px;"
         class="btn btn-primary btn-sm fs-sm rounded my-3 my-lg-1 align-content-center">
         <i class="bx bx-user fs-lg me-1 text-center"></i>
         Cerrar sesión
