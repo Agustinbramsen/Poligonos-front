@@ -23,18 +23,21 @@ def user_login(request):
             return redirect('home')
         else:
             print("Authentication failed for username:", username)
-            messages.error(request, 'Credenciales inválidas. Por favor, inténtelo de nuevo.')
+            messages.error(
+                request, 'Credenciales inválidas. Por favor, inténtelo de nuevo.')
 
     return render(request, 'login.html')
 
+
 def user_logout(request):
     logout(request)
-    return redirect('login')  
+    return redirect('login')
 
 
 @login_required
 def datosh(request):
     return render(request, 'datosh.html')
+
 
 @login_required
 def data_type(request):
@@ -46,38 +49,63 @@ def data_type(request):
 
 
 @login_required
-def get_distritos(request, data_type):    
+def get_distritos(request, data_type):
     if data_type == 'telefono':
-        filtered_data = DatoHuerfanoTelefono.objects.values_list('distrito_nombre').distinct()
+        filtered_data = DatoHuerfanoTelefono.objects.values_list(
+            'distrito_nombre').distinct()
     elif data_type == 'celular':
-        filtered_data = DatoHuerfanoCelular.objects.values_list('distrito_nombre').distinct()
+        filtered_data = DatoHuerfanoCelular.objects.values_list(
+            'distrito_nombre').distinct()
     elif data_type == 'email':
-        filtered_data = DatoHuerfanoEmail.objects.values_list('distrito_nombre').distinct()
-    
-    distritos = [{"value": filter[0], "text": filter[0]} for filter in filtered_data]
+        filtered_data = DatoHuerfanoEmail.objects.values_list(
+            'distrito_nombre').distinct()
+
+    distritos = [{"value": filter[0], "text": filter[0]}
+                 for filter in filtered_data]
     distritos.insert(0, {"value": "Todos", "text": "Todos"})
 
     return JsonResponse({'types': distritos})
 
 
-def data_tags(request, data_type):
-    if data_type == 'celular':
-        tags = DatoHuerfanoCelular.objects.values_list(
-            'tag', flat=True).distinct()
-    elif data_type == 'telefono':
-        tags = DatoHuerfanoTelefono.objects.values_list(
-            'tag', flat=True).distinct()
+def data_tags(request, data_type, distrito):
+
+    index = distrito.find('_')
+    if distrito == 'caba':
+        distrito = distrito.upper()
+    elif index != -1:
+        distrito = distrito.replace('_', ' ').title()
     else:
-        tags = DatoHuerfanoEmail.objects.values_list(
-            'tag', flat=True).distinct()
+        distrito = distrito.capitalize()
+
+    if data_type == 'celular':
+        if distrito == 'Todos':
+            tags = DatoHuerfanoCelular.objects.values_list(
+                'tag', flat=True).distinct()
+        else:
+            tags = DatoHuerfanoCelular.objects.filter(
+                distrito_nombre=distrito).values_list('tag', flat=True).distinct()
+    elif data_type == 'telefono':
+        if distrito == 'Todos':
+            tags = DatoHuerfanoTelefono.objects.values_list(
+                'tag', flat=True).distinct()
+        else:
+            tags = DatoHuerfanoTelefono.objects.filter(
+                distrito_nombre=distrito).values_list('tag', flat=True).distinct()
+    else:
+        if distrito == 'Todos':
+            tags = DatoHuerfanoEmail.objects.values_list(
+                'tag', flat=True).distinct()
+        else:
+            tags = DatoHuerfanoEmail.objects.filter(
+                distrito_nombre=distrito).values_list('tag', flat=True).distinct()
 
     tags_list = [{"value": tag, "text": tag} for tag in tags]
     tags_list.insert(0, {"value": "Todos", "text": "Todos"})
     return JsonResponse({'types': tags_list})
 
-@login_required
-def view_data(request, data_type, tag):
 
+@login_required
+def view_data(request, data_type, distrito, tag ):
     if data_type == 'celular':
         data_model = DatoHuerfanoCelular
     elif data_type == 'telefono':
@@ -85,17 +113,21 @@ def view_data(request, data_type, tag):
     else:
         data_model = DatoHuerfanoEmail
 
-    if tag == 'Todos':
-        data = data_model.objects.all()
-    else:
-        data = data_model.objects.filter(tag=tag)
+    # Comenzamos con una consulta que incluye todos los registros
+    data = data_model.objects.all()
 
+    # Si se proporciona un distrito específico, filtramos por él
+    if distrito != 'Todos':
+        data = data.filter(distrito_nombre=distrito)
+
+    # Si se proporciona una etiqueta específica, filtramos por ella
+    if tag != 'Todos':
+        data = data.filter(tag=tag)
     data_serialized = serialize('json', data, fields=(
         'pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
     json_data = json.loads(data_serialized)
     response_data = [{data_type: item['pk'], **item['fields']}
-                     for item in json_data]  
-
+                     for item in json_data]
+    print(len(response_data))
     response_data = {'data': response_data}
     return JsonResponse(response_data, safe=False)
-

@@ -100,13 +100,13 @@
     .input-container {
         display: flex;
         align-items: center;
-        gap: 10px; /* Espacio entre etiquetas y campos */
+        gap: 10px; 
     }
 
-    /* Estilo adicional para ajustar el ancho de las etiquetas */
+    
     .input-container label {
-        flex-basis: 30%; /* Ajusta este valor para cambiar el ancho de las etiquetas */
-        margin: 0; /* Elimina el margen por defecto de las etiquetas */
+        flex-basis: 30%; 
+        margin: 0; 
     }
 </style>
 
@@ -129,12 +129,12 @@
                     </select>
                 </div>
                 <div class="mb-3 input-container">
-                    <select name="type" id="type-select" class="form-select" disabled>
+                    <select name="sec" id="sec-select" class="form-select" disabled>
                         
                     </select>
                 </div>
                 <div class="mb-3">
-                    <select name="tag" id="tag-select" class="form-select" disabled>
+                    <select name="ter" id="ter-select" class="form-select" disabled>
                         
                     </select>
                 </div>
@@ -146,5 +146,5 @@
 
 </main>
 
-<script src="{% static 'js/form.js' %}"></script>
+<script type="module" src="{% static 'js/form.js' %}"></script>
 {% endblock %}

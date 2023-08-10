@@ -1,35 +1,37 @@
 const datos = document.getElementById('data-select');
-const tipo_o_prov = document.getElementById('type-select');
-const tag_distrito = document.getElementById('p-select');
+const select_data = document.getElementById('sec-select');
+const tag_distrito = document.getElementById('ter-select');
 const buttonUrl = document.getElementById('sendUrl');
 
+import { capitalizeString } from "./functionForm.js";
+
+
+buttonUrl.disabled = true;
 let url;
 
 datos.addEventListener('change', function () {
   const selectedApp = this.value;
-
-  const tagSelect = document.getElementById('tag-select');
+  buttonUrl.disabled = true;
+  const tagSelect = document.getElementById('cto-select');
   if (tagSelect) tagSelect.remove();
 
   if (selectedApp === 'datosh') {
     url = 'tipo_de_dato/';
-
+    console.log(url);
     const container = document.getElementById('container-form');
 
     const newDiv = document.createElement('div');
     newDiv.className = 'mb-3';
 
     const newSelect = document.createElement('select');
-    newSelect.name = 'tag';
-    newSelect.id = 'tag-select';
+    newSelect.name = 'cto';
+    newSelect.id = 'cto-select';
     newSelect.className = 'form-select';
     newSelect.disabled = true;
 
     newDiv.appendChild(newSelect);
-    
-    // Encuentra el botón para insertar el nuevo div antes de él
-    const button = document.getElementById('sendUrl');
-    container.insertBefore(newDiv, button);
+
+    container.insertBefore(newDiv, buttonUrl);
 
   } else if (selectedApp === 'guiast') {
     url = '/guiast/';
@@ -39,21 +41,21 @@ datos.addEventListener('change', function () {
   }
 
 
-  
+
   fetch(url)
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      let dataSelector = document.getElementById('type-select');
-      dataSelector.innerHTML = '<option value="">Selecciona un dato</option>';
+
+      select_data.innerHTML = '<option value="">Selecciona un dato</option>';
       data.types.forEach(item => {
         const option = document.createElement('option');
         option.value = item.value;
-        option.textContent = item.text;
-        dataSelector.appendChild(option);
+        option.textContent = (item.text === 'caba') ? 'CABA' : capitalizeString(item.text);
+        select_data.appendChild(option);
       });
-      dataSelector.disabled = false;
-      
+      select_data.disabled = false;
+
 
     })
     .catch(error => {
@@ -62,12 +64,16 @@ datos.addEventListener('change', function () {
 });
 
 let tagUrl;
-tipo_o_prov.addEventListener('change', function () {
+select_data.addEventListener('change', function () {
   const choice = this.value;
+  console.log(choice);
+  console.log(url);
+
+
 
   tagUrl = `${url}${choice}`;
   console.log(tagUrl);
-  
+
 
   fetch(tagUrl)
     .then(response => response.json())
@@ -82,8 +88,9 @@ tipo_o_prov.addEventListener('change', function () {
           tag_distrito.appendChild(option);
         }
       });
+      if (url === '/guiast/') buttonUrl.disabled = false;
       tag_distrito.disabled = false;
-      const tagS = document.getElementById('tag-select');
+      const tagS = document.getElementById('cto-select');
       tagS.disabled = false;
     })
     .catch(error => {
@@ -92,23 +99,52 @@ tipo_o_prov.addEventListener('change', function () {
 })
 
 let finalUrl;
-
+let tagsUrl;
 // ACA TENEMOS QUE CREAR LA LÓGICA QUE DEBEMOS CONTINUAR PARA EL SELECTOR DE TAGS
+
+tag_distrito.addEventListener('change', function () {
+  let tag = this.value;
+  tag = tag.replace(' ', '_').toLowerCase();
+  console.log(tag);
+  finalUrl = `${tagUrl}/${tag}`
+  console.log(finalUrl);
+  fetch(finalUrl)
+    .then( response => response.json())
+    .then(data => {
+      const ctoSelect = document.getElementById('cto-select')
+      ctoSelect.innerHTML = '<option value="">Selecciona un dato</option>';
+      data.types.forEach(item => {
+        if (item.value && item.text) {
+          const option = document.createElement('option');
+          option.value = item.value;
+          option.textContent = item.text;
+          ctoSelect.appendChild(option);
+        }
+      });
+      buttonUrl.disabled = false;
+    })
+})
 
 
 let dataToCSV;
 const newButton = document.createElement('button');
 
 buttonUrl.addEventListener('click', () => {
-  const selectedTag = document.getElementById('tag-select').value;
-  finalUrl = `${tagUrl}/${selectedTag}`;
-  
+  let selectedTag;
+  console.log(document.getElementById('cto-select').value);
+  if(document.getElementById('cto-select')) {
+    selectedTag = document.getElementById('cto-select').value }
+  else{
+    selectedTag = document.getElementById('ter-select').value;
+  }  
+  finalUrl = `${finalUrl}/${selectedTag}`;
+  console.log(finalUrl);
   fetch(finalUrl)
     .then(response => response.json())
     .then(data => {
-      
-      dataToCSV = data.data
 
+      dataToCSV = data.data
+      console.log(data);
       const containerId = 'results-container';
 
 
