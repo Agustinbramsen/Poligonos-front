@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .models import DatoHuerfanoTelefono, DatoHuerfanoCelular, DatoHuerfanoEmail
-from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.core.serializers import serialize
 import json
@@ -113,14 +112,11 @@ def view_data(request, data_type, distrito, tag ):
     else:
         data_model = DatoHuerfanoEmail
 
-    # Comenzamos con una consulta que incluye todos los registros
     data = data_model.objects.all()
 
-    # Si se proporciona un distrito específico, filtramos por él
     if distrito != 'Todos':
         data = data.filter(distrito_nombre=distrito)
 
-    # Si se proporciona una etiqueta específica, filtramos por ella
     if tag != 'Todos':
         data = data.filter(tag=tag)
     data_serialized = serialize('json', data, fields=(
