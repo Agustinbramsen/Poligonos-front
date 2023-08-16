@@ -97,52 +97,61 @@
         animation: spin 1s linear infinite;
         display: none;
     }
+
     .input-container {
         display: flex;
         align-items: center;
-        gap: 10px; 
+        gap: 10px;
     }
 
-    
+
     .input-container label {
-        flex-basis: 30%; 
-        margin: 0; 
+        flex-basis: 30%;
+        margin: 0;
     }
+    tr {
+        padding: 20px;
+        text-align: center;
+        background-color: rgb(233,236,239);
+      }
 </style>
 
 <hr>
 
+
+
 <main class="myMain">
 
-<div class="container my-5">
-    <div class="d-flex justify-content-center">
-        <div class="col-md-6">
-            <div class="text-center">
-                <div class="mb-3 input-container">
-                    <label>Seleccione Categoria</label>
-            <div class="text-center" id="container-form">
-                <div class="mb-3">
-                    <select name="data_type" id="data-select" class="form-select">
-                        <option value="" disabled selected></option>
-                        <option value="datosh">Datos Huerfanos</option>
-                        <option value="guiast">Guías Telefónicas</option>
-                    </select>
+    <div class="container my-5">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center" id="container-form">
+                    <h5>Seleccione que datos desea buscar</h5>
+                    <div class="mb-3">
+                        <select name="data_type" id="data-select" class="form-select">
+                            <option value="" disabled selected></option>
+                            <option value="datosh">Datos Huerfanos</option>
+                            <option value="guiast">Guías Telefónicas</option>
+                        </select>
+                    </div>
+                    <h5 id="sec-subtitle"></h5>
+                    <div class="mb-3 input-container" id="id-sec-select">
+                        <!-- <select name="sec" id="sec-select" class="form-select" disabled>
+
+                        </select> -->
+                    </div>
+                    <div id="btn-container"></div>
+                    <h5 id="ter-subtitle"></h5>
+                    <div class="mb-3">
+                        <select name="ter" id="ter-select" class="form-select" disabled>
+
+                        </select>
+                    </div>
+                    <button id="sendUrl" class="btn btn-primary">Mostrar datos</button>
                 </div>
-                <div class="mb-3 input-container">
-                    <select name="sec" id="sec-select" class="form-select" disabled>
-                        
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <select name="ter" id="ter-select" class="form-select" disabled>
-                        
-                    </select>
-                </div>
-                <button id="sendUrl" class="btn btn-primary">Mostrar datos</button>
             </div>
         </div>
     </div>
-</div>
 
 </main>
 

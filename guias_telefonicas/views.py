@@ -35,27 +35,27 @@ guias_telefonicas = {
     'tucuman': GuiaTelefonicaTucuman
 }
 
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+#         user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            print("User authenticated:", user)
-            auth_login(request, user)
-            return redirect('home')
-        else:
-            print("Authentication failed for username:", username)
-            messages.error(request, 'Credenciales inválidas. Por favor, inténtelo de nuevo.')
+#         if user is not None:
+#             print("User authenticated:", user)
+#             auth_login(request, user)
+#             return redirect('home')
+#         else:
+#             print("Authentication failed for username:", username)
+#             messages.error(request, 'Credenciales inválidas. Por favor, inténtelo de nuevo.')
 
-    return render(request, 'login.html')
+#     return render(request, 'login.html')
 
 
-def user_logout(request):
-    logout(request)
-    return redirect('login')  
+# def user_logout(request):
+#     logout(request)
+#     return redirect('login')  
 
 
 
@@ -75,13 +75,17 @@ def get_guia_prov(request, prov):
 @login_required
 
 def get_data(request, prov, localidad):
-
     GuiaClass = guias_telefonicas.get(prov.lower())
+    print(localidad)
+    if localidad == 'undefined':
+            guias = GuiaClass.objects.filter(localidad='?').values()
+    else:
+            guias = GuiaClass.objects.filter(localidad=localidad).values()
     
 
-    guias = GuiaClass.objects.filter(localidad=localidad).values()
+    # guias = GuiaClass.objects.filter(localidad=localidad).values()
 
-    data =data = [
+    data = [
         {
             'tipoguia': item['tipoguia'],
             'titular': item['titular'],

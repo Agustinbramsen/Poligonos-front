@@ -48,3 +48,6 @@ class AndromedaTagsDescripcion(models.Model):
 
     class Meta:
         db_table = 'andromeda_tags_descripcion'
+
+class Tags(models.Model):
+    pass
