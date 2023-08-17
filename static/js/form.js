@@ -1,5 +1,4 @@
 const datos = document.getElementById('data-select');
-// const select_data = document.getElementById('sec-select');
 const tag_distrito = document.getElementById('ter-select');
 const buttonUrl = document.getElementById('sendUrl');
 
@@ -53,9 +52,9 @@ datos.addEventListener('change', function () {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      if(document.getElementById('results-container')) document.getElementById('results-container').innerHTML = ''
+      if (document.getElementById('results-container')) document.getElementById('results-container').innerHTML = ''
 
-      if(document.getElementById('cto-subtitle')) document.getElementById('cto-subtitle').textContent = '';
+      if (document.getElementById('cto-subtitle')) document.getElementById('cto-subtitle').textContent = '';
 
       const secSubtitle = document.getElementById('sec-subtitle')
 
@@ -91,7 +90,7 @@ datos.addEventListener('change', function () {
         containerCheckPoint.innerHTML = checkboxs
 
         btnSelectData.id = 'btn-select-data'
-        btnSelectData.className = 'btn btn-success'
+        btnSelectData.className = 'btn btn-success mb-3'
         btnSelectData.textContent = 'Confirmar datos'
         document.getElementById('btn-container').appendChild(btnSelectData)
       }
@@ -247,6 +246,12 @@ buttonUrl.addEventListener('click', () => {
       containerDiv.className = 'container my-5';
       document.body.appendChild(containerDiv);
 
+      const btnContainer = document.createElement('div');
+      btnContainer.className = 'd-flex align-items-center'
+      btnContainer.id = 'btnContainer'
+
+      // containerDiv.appendChild(btnContainer);
+
       const containerBtnLabel = document.createElement('div');
       containerBtnLabel.className = 'd-flex justify-content-between my-4';
       containerDiv.appendChild(containerBtnLabel);
@@ -254,31 +259,37 @@ buttonUrl.addEventListener('click', () => {
       if (url == '/guiast/') {
         dataToCSV = data.data
         const label = document.createElement('div');
-        label.textContent = `Cantidad de registros: ${data.data.length}`;
-        label.className = 'h3'
+        // label.innerHTML = `Cantidad de registros: ${data.data.length}`;
+        label.innerHTML = `<label class="fw-bold">CANTIDAD DE REGISTROS</label><h5 class="fw-bold fs-2"> ${data.data.length.toLocaleString('de-DE')}</h6>`;
+        label.className = 'bg-light shadow rounded-3 p-3'
         containerBtnLabel.appendChild(label);
 
         newButton.textContent = "Descargar CSV";
         newButton.className = "btn btn-success";
-        containerBtnLabel.appendChild(newButton);
+
+        containerBtnLabel.appendChild(btnContainer);
+        btnContainer.appendChild(newButton);
 
 
         const table = document.createElement('table');
         table.className = "table";
 
+        // Si quieres que la tabla sea responsive, puedes hacer esto:
+        const responsiveWrapper = document.createElement('div');
+        responsiveWrapper.className = "table-responsive";
+        responsiveWrapper.appendChild(table);
 
         const headerRow = document.createElement('tr');
+
         if (data.data[0]) {
           Object.keys(data.data[0]).forEach(key => {
             const th = document.createElement('th');
             th.className = 'text-center';
-            console.log(key);
             th.textContent = capitalizeString(key);
             headerRow.appendChild(th);
           });
           table.appendChild(headerRow);
         }
-
 
         data.data.slice(0, 50).forEach(record => {
           const row = document.createElement('tr');
@@ -302,21 +313,21 @@ buttonUrl.addEventListener('click', () => {
       else {
         const combinedData = [];
 
-        if (data.celular.length > 0){
+        if (data.celular.length > 0) {
           const dataCel = document.createElement('div');
-          dataCel.innerHTML = `<h5>PERSONAS CON CELULAR</h5><div> ${data.celular.length.toLocaleString('de-DE')}</div>`;
+          dataCel.innerHTML = `<label class="fw-bold" >PERSONAS CON CELULAR</label><h5 class="fw-bold fs-2"> ${data.celular.length.toLocaleString('de-DE')}</h5>`;
           dataCel.className = 'bg-light shadow rounded-3 p-3'
           containerBtnLabel.appendChild(dataCel);
         }
-        if (data.telefono.length > 0){
+        if (data.telefono.length > 0) {
           const dataTel = document.createElement('div');
-          dataTel.innerHTML = `<h5>PERSONAS CON TELÉFONOS</h5> <div>${data.telefono.length.toLocaleString('de-DE')}</div>`;
+          dataTel.innerHTML = `<label class="fw-bold" >PERSONAS CON TELÉFONOS</label><h5 class="fw-bold fs-2"> ${data.telefono.length.toLocaleString('de-DE')}</h5>`;
           dataTel.className = 'bg-light shadow rounded-3 p-3'
           containerBtnLabel.appendChild(dataTel);
         }
-        if (data.email.length > 0){
+        if (data.email.length > 0) {
           const dataEmail = document.createElement('div');
-          dataEmail.innerHTML = `<h5>PERSONAS CON EMAILS</h5><div> ${data.email.length.toLocaleString('de-DE')}</div>`;
+          dataEmail.innerHTML = `<label class="fw-bold" >PERSONAS CON EMAILS</label><h5 class="fw-bold fs-2"> ${data.email.length.toLocaleString('de-DE')}</h5>`;
           dataEmail.className = 'bg-light shadow rounded-3 p-3'
           containerBtnLabel.appendChild(dataEmail);
         }
@@ -344,19 +355,26 @@ buttonUrl.addEventListener('click', () => {
 
         const table = document.createElement('table');
         table.id = 'id-table';
-        table.className = 'm-auto'
+        table.className = 'table';
+
+        // Si quieres que la tabla sea responsive, puedes hacer esto:
+        const responsiveWrapper = document.createElement('div');
+        responsiveWrapper.className = "table-responsive";
+        responsiveWrapper.appendChild(table);
+
         const headerRow = document.createElement('tr');
 
         const commonHeaders = ['seccion_nombre', 'distrito_nombre', 'tag', 'Tipo de Dato'];
         commonHeaders.forEach((header) => {
           const th = document.createElement('th');
-          th.className = 'text-center mx-4 '
+          th.className = 'text-center mx-4';
           th.innerText = capitalizeString(header);
           headerRow.appendChild(th);
         });
 
         table.appendChild(headerRow);
-        containerDiv.appendChild(table);
+        containerDiv.appendChild(responsiveWrapper);
+
 
         const viewData = (dataRow, dataType) => {
           let dataLength = Math.min(dataRow.length, 20);
@@ -380,13 +398,18 @@ buttonUrl.addEventListener('click', () => {
           }
         };
 
-        // Llamar a viewData para cada tipo de datos
+        const rows = document.querySelectorAll('table > tbody > tr');
+        console.log(rows);
+
+
         viewData(data.celular, 'Celular');
         viewData(data.telefono, 'Telefono');
         viewData(data.email, 'Email');
         newButton.textContent = "Descargar CSV";
         newButton.className = "btn btn-success";
-        containerBtnLabel.appendChild(newButton);
+        containerBtnLabel.appendChild(btnContainer);
+        btnContainer.appendChild(newButton);
+
 
       }
 
@@ -422,6 +445,3 @@ function convertToCSV(data) {
 
   return csv;
 }
-/*
-
-*/ 

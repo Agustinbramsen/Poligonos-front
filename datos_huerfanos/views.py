@@ -91,81 +91,6 @@ def data_tags(request, data_type, distrito):
 
 
 
-# def view_data(request, data_type, distrito, tag ):
-#     print(data_type, 'data_type')
-#     print(distrito, 'distrito')
-#     print(tag, 'tag')
-
-#     index = distrito.find('_')
-#     if distrito == 'caba':
-#         distrito = distrito.upper()
-#     elif index != -1:
-#         distrito = distrito.replace('_', ' ').title()
-#     else:
-#         distrito = distrito.capitalize()
-
-#     if data_type == 'celular':
-#         data_model = DatoHuerfanoCelular
-#     elif data_type == 'telefono':
-#         data_model = DatoHuerfanoTelefono
-#     else:
-#         data_model = DatoHuerfanoEmail
-
-#     data = data_model.objects.all()
-#     print(len(data))
-#     if distrito != 'Todos':
-#         data = data.filter(distrito_nombre=distrito)
-
-#     if tag != 'Todos':
-#         data = data.filter(tag=tag)
-#     data_serialized = serialize('json', data, fields=(
-#         'pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
-#     json_data = json.loads(data_serialized)
-#     response_data = [{data_type: item['pk'], **item['fields']}
-#                      for item in json_data]
-#     print(len(response_data))
-#     response_data = {'data': response_data}
-#     return JsonResponse(response_data, safe=False)
-
-# @login_required
-# def view_data(request, data_type, distrito, tag):
-#     # Preprocesamiento del distrito
-#     index = distrito.find('_')
-#     if distrito == 'caba':
-#         distrito = distrito.upper()
-#     elif index != -1:
-#         distrito = distrito.replace('_', ' ').title()
-#     else:
-#         distrito = distrito.capitalize()
-
-
-#     response_data = {'data': []}
-
-#     for dtype in data_type:
-#         if dtype == 'c':
-#             data_model = DatoHuerfanoCelular
-#         elif dtype == 't':
-#             data_model = DatoHuerfanoTelefono
-#         elif dtype == 'e':
-#             data_model = DatoHuerfanoEmail
-
-#         data = data_model.objects.all()
-
-#         if distrito != 'Todos':
-#             data = data.filter(distrito_nombre=distrito)
-#         if tag != 'Todos':
-#             data = data.filter(tag=tag)
-
-#         data_serialized = serialize('json', data, fields=('pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
-#         json_data = json.loads(data_serialized)
-#         # response_data['data'].extend([{dtype: item['pk'], **item['fields']} for item in json_data])
-#         for item in json_data:
-#             record = {dtype: item['pk'], **item['fields']}
-#             response_data['data'].append(record)
-
-#     return JsonResponse(response_data, safe=False)
-
-
 def get_data_for_type(data_model, distrito, tag):
     data = data_model.objects.all()
     
@@ -211,42 +136,5 @@ def view_data(request, data_type, distrito, tag):
 
     return JsonResponse(response_data, safe=False)
 
-# def view_data(request, data_type, distrito, tag):
-#     # Preprocesamiento del distrito
-#     index = distrito.find('_')
-#     if distrito == 'caba':
-#         distrito = distrito.upper()
-#     elif index != -1:
-#         distrito = distrito.replace('_', ' ').title()
-#     else:
-#         distrito = distrito.capitalize()
-
-#     response_data = {'celular': [], 'telefono': [], 'email': []}
-
-#     for dtype in data_type:
-#         key = ''
-#         if dtype == 'c':
-#             data_model = DatoHuerfanoCelular
-#             key = 'celular'
-#         elif dtype == 't':
-#             data_model = DatoHuerfanoTelefono
-#             key = 'telefono'
-#         elif dtype == 'e':
-#             data_model = DatoHuerfanoEmail
-#             key = 'email'
-
-#         data = data_model.objects.all()
-#         if distrito != 'Todos':
-#             data = data.filter(distrito_nombre=distrito)
-#         if tag != 'Todos':
-#             data = data.filter(tag=tag)
-
-#         data_serialized = serialize('json', data, fields=('pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
-#         json_data = json.loads(data_serialized)
-#         for item in json_data:
-#             record = {'id': item['pk'], **item['fields']}
-#             response_data[key].append(record)
-#         print(len(json_data))
-#     return JsonResponse(response_data, safe=False)
 
 

@@ -35,30 +35,6 @@ guias_telefonicas = {
     'tucuman': GuiaTelefonicaTucuman
 }
 
-# def user_login(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-
-#         user = authenticate(request, username=username, password=password)
-
-#         if user is not None:
-#             print("User authenticated:", user)
-#             auth_login(request, user)
-#             return redirect('home')
-#         else:
-#             print("Authentication failed for username:", username)
-#             messages.error(request, 'Credenciales inválidas. Por favor, inténtelo de nuevo.')
-
-#     return render(request, 'login.html')
-
-
-# def user_logout(request):
-#     logout(request)
-#     return redirect('login')  
-
-
-
 @login_required
 def get_guias(request):
     keys_list = [{'value': key.lower(), 'text': key.lower()} for key in guias_telefonicas.keys()]
