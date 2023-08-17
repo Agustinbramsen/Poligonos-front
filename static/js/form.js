@@ -53,6 +53,9 @@ datos.addEventListener('change', function () {
     .then(response => response.json())
     .then(data => {
       console.log(data);
+      if(document.getElementById('results-container')) document.getElementById('results-container').innerHTML = ''
+
+      if(document.getElementById('cto-subtitle')) document.getElementById('cto-subtitle').textContent = '';
 
       const secSubtitle = document.getElementById('sec-subtitle')
 
@@ -176,10 +179,10 @@ try {
     finalUrl = `${resultURL}/${tag}`
     console.log(finalUrl);
 
-    if (document.getElementById('cto-subtitle')) document.getElementById('cto-subtitle').textContent = 'Seleccione tag';
+    // if (document.getElementById('cto-subtitle')) 
 
     if (document.getElementById('cto-select')) {
-
+      document.getElementById('cto-subtitle').textContent = 'Seleccione tag';
       fetch(finalUrl)
         .then(response => response.json())
         .then(data => {
@@ -297,7 +300,46 @@ buttonUrl.addEventListener('click', () => {
         containerDiv.appendChild(table);
       }
       else {
-        dataToCSV = data
+        const combinedData = [];
+
+        if (data.celular.length > 0){
+          const dataCel = document.createElement('div');
+          dataCel.innerHTML = `<h5>PERSONAS CON CELULAR</h5><div> ${data.celular.length.toLocaleString('de-DE')}</div>`;
+          dataCel.className = 'bg-light shadow rounded-3 p-3'
+          containerBtnLabel.appendChild(dataCel);
+        }
+        if (data.telefono.length > 0){
+          const dataTel = document.createElement('div');
+          dataTel.innerHTML = `<h5>PERSONAS CON TELÉFONOS</h5> <div>${data.telefono.length.toLocaleString('de-DE')}</div>`;
+          dataTel.className = 'bg-light shadow rounded-3 p-3'
+          containerBtnLabel.appendChild(dataTel);
+        }
+        if (data.email.length > 0){
+          const dataEmail = document.createElement('div');
+          dataEmail.innerHTML = `<h5>PERSONAS CON EMAILS</h5><div> ${data.email.length.toLocaleString('de-DE')}</div>`;
+          dataEmail.className = 'bg-light shadow rounded-3 p-3'
+          containerBtnLabel.appendChild(dataEmail);
+        }
+
+        data.celular.forEach(item => {
+          let newItem = { ...item, tipo: 'celular' };
+          combinedData.push(newItem);
+        });
+
+        data.telefono.forEach(item => {
+          let newItem = { ...item, tipo: 'telefono' };
+          combinedData.push(newItem);
+        });
+
+        data.email.forEach(item => {
+          let newItem = { ...item, tipo: 'email' };
+          combinedData.push(newItem);
+        });
+
+        console.log(combinedData);
+
+        dataToCSV = combinedData
+        console.log(dataToCSV);
         if (document.getElementById('id-table')) document.getElementById('id-table').remove();
 
         const table = document.createElement('table');
@@ -342,7 +384,9 @@ buttonUrl.addEventListener('click', () => {
         viewData(data.celular, 'Celular');
         viewData(data.telefono, 'Telefono');
         viewData(data.email, 'Email');
-
+        newButton.textContent = "Descargar CSV";
+        newButton.className = "btn btn-success";
+        containerBtnLabel.appendChild(newButton);
 
       }
 
@@ -350,7 +394,7 @@ buttonUrl.addEventListener('click', () => {
 });
 
 newButton.addEventListener('click', () => {
-
+  console.log(dataToCSV);
   const csv = convertToCSV(dataToCSV);
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -364,6 +408,7 @@ newButton.addEventListener('click', () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 function convertToCSV(data) {
   const headers = Object.keys(data[0]);

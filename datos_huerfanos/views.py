@@ -165,6 +165,17 @@ def data_tags(request, data_type, distrito):
 
 #     return JsonResponse(response_data, safe=False)
 
+
+def get_data_for_type(data_model, distrito, tag):
+    data = data_model.objects.all()
+    
+    if distrito != 'Todos':
+        data = data.filter(distrito_nombre=distrito)
+    if tag != 'Todos':
+        data = data.filter(tag=tag)
+
+    return list(data.values('pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
+
 @login_required
 def view_data(request, data_type, distrito, tag):
     # Preprocesamiento del distrito
@@ -178,30 +189,64 @@ def view_data(request, data_type, distrito, tag):
 
     response_data = {'celular': [], 'telefono': [], 'email': []}
 
+    type_to_model_map = {
+        'c': DatoHuerfanoCelular,
+        't': DatoHuerfanoTelefono,
+        'e': DatoHuerfanoEmail
+    }
+
+    type_to_key_map = {
+        'c': 'celular',
+        't': 'telefono',
+        'e': 'email'
+    }
+
     for dtype in data_type:
-        key = ''
-        if dtype == 'c':
-            data_model = DatoHuerfanoCelular
-            key = 'celular'
-        elif dtype == 't':
-            data_model = DatoHuerfanoTelefono
-            key = 'telefono'
-        elif dtype == 'e':
-            data_model = DatoHuerfanoEmail
-            key = 'email'
+        model = type_to_model_map.get(dtype)
+        key = type_to_key_map.get(dtype)
 
-        data = data_model.objects.all()
-        if distrito != 'Todos':
-            data = data.filter(distrito_nombre=distrito)
-        if tag != 'Todos':
-            data = data.filter(tag=tag)
+        if model and key:
+            response_data[key] = get_data_for_type(model, distrito, tag)
 
-        data_serialized = serialize('json', data, fields=('pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
-        json_data = json.loads(data_serialized)
-        for item in json_data:
-            record = {'id': item['pk'], **item['fields']}
-            response_data[key].append(record)
 
     return JsonResponse(response_data, safe=False)
+
+# def view_data(request, data_type, distrito, tag):
+#     # Preprocesamiento del distrito
+#     index = distrito.find('_')
+#     if distrito == 'caba':
+#         distrito = distrito.upper()
+#     elif index != -1:
+#         distrito = distrito.replace('_', ' ').title()
+#     else:
+#         distrito = distrito.capitalize()
+
+#     response_data = {'celular': [], 'telefono': [], 'email': []}
+
+#     for dtype in data_type:
+#         key = ''
+#         if dtype == 'c':
+#             data_model = DatoHuerfanoCelular
+#             key = 'celular'
+#         elif dtype == 't':
+#             data_model = DatoHuerfanoTelefono
+#             key = 'telefono'
+#         elif dtype == 'e':
+#             data_model = DatoHuerfanoEmail
+#             key = 'email'
+
+#         data = data_model.objects.all()
+#         if distrito != 'Todos':
+#             data = data.filter(distrito_nombre=distrito)
+#         if tag != 'Todos':
+#             data = data.filter(tag=tag)
+
+#         data_serialized = serialize('json', data, fields=('pk', 'seccion_nombre', 'distrito_nombre', 'tag'))
+#         json_data = json.loads(data_serialized)
+#         for item in json_data:
+#             record = {'id': item['pk'], **item['fields']}
+#             response_data[key].append(record)
+#         print(len(json_data))
+#     return JsonResponse(response_data, safe=False)
 
 
