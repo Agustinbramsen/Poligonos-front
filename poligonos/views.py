@@ -54,22 +54,18 @@ def filtrar_datos(request):
 
         datos_filtrados = DatosPoligonos.objects.all()
 
-        
-        if seccion == "TODAS" and provincia:
+        if provincia:
             datos_filtrados = datos_filtrados.filter(distrito_nombre=provincia)
-        elif seccion:
+        
+        if seccion and seccion != "TODAS":
             datos_filtrados = datos_filtrados.filter(seccion_nombre=seccion)
         
-        contador = 0
-        datos_parseados = []
-        for dato in datos_filtrados:
-            datos_parseados.append(dato.model_to_dict())
-            if contador == 0:
-                contador = 1
-                for i, j in dato.model_to_dict().items():
-                    print(i, " ", j)
+        # Aplicar más filtros según la selección de "feedback" si es necesario
+        if feedback:
+            datos_filtrados = datos_filtrados.filter(feedback=feedback)
+        
+        datos_parseados = [dato.model_to_dict() for dato in datos_filtrados]
 
         return render(request, 'tabla.html', {'datos': datos_parseados})
 
-    
     return render(request, 'form.html')
