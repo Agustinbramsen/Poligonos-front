@@ -26,7 +26,7 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-#w7(ed)9w!0b*g37d=e2u$t3klpcc5!w_%474ok+z8^&n1wz8+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://poligonos.eligeargentina.com']
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    'poligonos',
+    'datos_huerfanos',
+    'guias_telefonicas'
+
 ]
 
 MIDDLEWARE = [
@@ -54,12 +57,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'poligonos.urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,22 +75,40 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'poligonos.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {    
+DATABASE_ROUTERS = ['core.router.Router']
+
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'desarrollo_poligonos',
         'USER': 'desarrollo_poligonos',
-        'PASSWORD':'N0rsAMBv7k4d-13TE6iowvMW',
-        'HOST':'db_master.andromeda.vpn',
-        'PORT':'3306',
-}
+        'PASSWORD': 'N0rsAMBv7k4d-13TE6iowvMW',
+        'HOST': 'db_master.andromeda.vpn',
+        'PORT': '3306',
+    },
+    'datos_huerfanos': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'segmentos',
+        'USER': 'desarrollo_poligonos',
+        'PASSWORD': 'N0rsAMBv7k4d-13TE6iowvMW',
+        'HOST': 'db_master.andromeda.vpn',
+        'PORT': '3306',
+    },
+    'guias': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'guias',
+        'USER': 'desarrollo_poligonos',
+        'PASSWORD': 'N0rsAMBv7k4d-13TE6iowvMW',
+        'HOST': 'db_master.andromeda.vpn',
+        'PORT': '3306',
     }
+}
 
 
 # Password validation
@@ -124,8 +145,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(CORE_DIR, 'static/')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

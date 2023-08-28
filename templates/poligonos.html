@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block base %}
+
+<style>
+  body {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  hr {
+    background: linear-gradient(to right, #ffd200, #ea9a3e, #dc547e, #dc5454, #8e5cb2, #61b0a3, #47bad1, #469ed8, #025f9d);
+    padding: 5px 100px;
+    border: none;
+    margin: 0px;
+    opacity: 1;
+  }
+
+  .sitio-web-en-creacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    /* ajusta la altura según sea necesario */
+  }
+
+  .sitio-web-en-creacion img {
+    width: 100%;
+    max-width: 500px;
+    /* ajusta el tamaño máximo de la imagen según sea necesario */
+  }
+</style>
+
+
+
+
+<main>
+  <!-- La etiqueta hr es la línea que separa el menú del resto de la web -->
+  <hr>
+
+  <h2 style="text-align: center; margin-top: 30px;">Esta sección se encuentra en construcción </h2>
+  <div class="sitio-web-en-creacion">
+    <img src="{% static 'error.jpg' %}" alt="Sitio web en creación">
+  </div>
+</main>
+
+
+<!-- Vendor Scripts
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script> -->
+{% endblock %}

@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from django.urls import path
-from .views import form, home, filtrar_datos
-
-# Create your views here.
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('form/', form, name="form"),
-    path('tabla/', filtrar_datos, name='tabla'),
+    path('admin/', admin.site.urls),
+    path('', include('poligonos.urls')),
+    path('datosh/', include('datos_huerfanos.urls')),
+    path('guiast/', include('guias_telefonicas.urls'))
 ]

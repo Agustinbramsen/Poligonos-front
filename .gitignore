@@ -145,3 +145,5 @@ cython_debug/
 
 # Lambda function
 function.zip
+venv
+db.sqlite3
